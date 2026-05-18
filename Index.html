@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Invitation</title>
+
+  <style>
+    :root {
+      --navy: #07142f;
+      --navy-light: #102650;
+      --ivory:#fff8ec;
+      --gold: #d9b66f;
+      --soft-gold: #f4ddaa;
+      --rose: #d8a6b1;
+      --thistle: #b9a7d8;
+      --glass: rgba(255, 248, 236, 0.92);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--ivory);
+      background:
+        radial-gradient(circle at top left, rgba(217, 182, 111, 0.15), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(185, 167, 216, 0.14), transparent 35%),
+        linear-gradient(135deg, #030817 0%, var(--navy) 48%, #0a1836 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      padding: 28px 18px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .castle-bg {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(88vw, 760px);
+      opacity: 0.09;
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(0.2px);
+    }
+
+    .castle-bg svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .sparkle {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--soft-gold);
+      box-shadow: 0 0 14px var(--soft-gold);
+      opacity: 0;
+      animation: sparkle 4s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .sparkle:nth-of-type(1) { left: 18%; top: 22%; animation-delay: 0s; }
+    .sparkle:nth-of-type(2) { left: 76%; top: 18%; animation-delay: 1.2s; }
+    .sparkle:nth-of-type(3) { left: 82%; top: 68%; animation-delay: 2.3s; }
+    .sparkle:nth-of-type(4) { left: 12%; top: 76%; animation-delay: 3s; }
+
+    @keyframes sparkle {
+      0%, 100% { transform: scale(0); opacity: 0; }
+      35% { transform: scale(1); opacity: 0.8; }
+      70% { transform: scale(0.35); opacity: 0.25; }
+    }
+
+    .intro {
+      text-align: center;
+      width: min(100%, 680px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .intro.hidden {
+      opacity: 0;
+      transform: translateY(-22px) scale(0.98);
+      pointer-events: none;
+      position: absolute;
+    }
+
+    .eyebrow {
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.35em;
+      font-size: 0.72rem;
+      color: rgba(255, 248, 236, 0.72);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 9vw, 5.8rem);
+      font-weight: 400;
+      line-height: 0.95;
+      color: var(--ivory);
+      text-shadow: 0 10px 40px rgba(0,0,0,0.35);
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      color: rgba(255, 248, 236, 0.78);
+      margin-bottom: 38px;
+    }
+
+    .envelope-button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      display: inline-block;
+      padding: 16px;
+    }
+
+    .envelope {
+      position: relative;
+      width: min(82vw, 390px);
+      height: 245px;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 26px 38px rgba(0,0,0,0.35));
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .envelope-base {
+      position: absolute;
+      inset: 60px 0 0;
+      background: linear-gradient(145deg, #fff7e7, #eed9a9);
+      border: 1px solid rgba(217, 182, 111, 0.8);
+      border-radius: 0 0 18px 18px;
+      overflow: hidden;
+    }
+
+    .envelope-base::before,
+    .envelope-base::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 56%;
+      height: 100%;
+      background: rgba(217, 182, 111, 0.2);
+    }
+
+    .envelope-base::before {
+      left: 0;
+      clip-path: polygon(0 0, 100% 100%, 0 100%);
+    }
+
+    .envelope-base::after {
+      right: 0;
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
+
+    .envelope-flap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 60px;
+      height: 126px;
+      background: linear-gradient(145deg, #fffaf0, #e9ce91);
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+      transform-origin: top center;
+      transition: transform 0.9s ease;
+      z-index: 3;
+      border-top: 1px solid rgba(217, 182, 111, 0.8);
+    }
+
+    .seal {
+      position: absolute;
+      left: 50%;
+      top: 137px;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a91f3f, #6f1028);
+      border: 2px solid rgba(255, 248, 236, 0.75);
+      z-index: 4;
+      display: grid;
+      place-items: center;
+      color: var(--ivory);
+      font-size: 1.25rem;
+    }
+
+    .envelope-button:hover .envelope-flap {
+      transform: rotateX(18deg);
+    }
+
+    .open-note {
+      margin-top: 14px;
+      color: rgba(255, 248, 236, 0.68);
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .invite-wrap {
+      width: min(100%, 820px);
+      display: none;
+      opacity: 0;
+      transform: translateY(32px);
+    }
+
+    .invite-wrap.visible {
+      display: block;
+      animation: revealInvite 1.2s ease forwards;
+    }
+
+    @keyframes revealInvite {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .invite-card {
+      position: relative;
+      background: var(--glass);
+      color: var(--navy);
+      border-radius: 34px;
+      padding: clamp(28px, 6vw, 58px);
+      border: 1px solid rgba(244, 221, 170, 0.9);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.42);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .invite-card::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(7, 20, 47, 0.15);
+      border-radius: 24px;
+      pointer-events: none;
+    }
+
+    .floral-line {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      color: var(--navy);
+      opacity: 0.75;
+    }
+
+    .flower {
+      width: 78px;
+      height: 38px;
+    }
+
+    .names {
+      font-size: clamp(2.8rem, 10vw, 6.5rem);
+      font-weight: 400;
+      color: var(--navy);
+      margin: 14px 0 20px;
+    }
+
+    .ampersand {
+      color: #9d7d3d;
+      font-size: 0.72em;
+    }
+
+    .invite-text {
+      max-width: 590px;
+      margin: 0 auto;
+      font-size: clamp(1.05rem, 3vw, 1.28rem);
+      line-height: 1.75;
+      color: rgba(7, 20, 47, 0.78);
+    }
+
+    .details {
+      margin: 30px auto;
+      padding: 22px;
+      max-width: 560px;
+      border-top: 1px solid rgba(7, 20, 47, 0.16);
+      border-bottom: 1px solid rgba(7, 20, 47, 0.16);
+    }
+
+    .time {
+      font-size: clamp(1.7rem, 5vw, 2.7rem);
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .venue,
+    .date {
+      font-family: Arial, sans-serif;
+      font-size: 0.98rem;
+      letter-spacing: 0.04em;
+      color: rgba(7, 20, 47, 0.68);
+      margin-top: 6px;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .link-button {
+      font-family: Arial, sans-serif;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 14px 18px;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid rgba(7, 20, 47, 0.2);
+      color: var(--navy);
+      background: rgba(255, 255, 255, 0.64);
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+      font-size: 0.95rem;
+    }
+
+    .link-button.primary {
+      background: var(--navy);
+      color: var(--ivory);
+      border-color: var(--navy);
+      grid-column: 1 / -1;
+      font-size: 1rem;
+    }
+
+    .link-button:hover {
+      transform: translateY(-2px);
+      background: #fff;
+      box-shadow: 0 12px 26px rgba(7, 20, 47, 0.16);
+    }
+
+    .link-button.primary:hover {
+      background: var(--navy-light);
+    }
+
+    .footer-note {
+      margin-top: 26px;
+      font-family: Arial, sans-serif;
+      font-size: 0.82rem;
+      color: rgba(7, 20, 47, 0.52);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        justify-content: flex-start;
+        padding-top: 52px;
+      }
+
+      .button-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .link-button.primary {
+        grid-column: auto;
+      }
+
+      .envelope {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="castle-bg" aria-hidden="true">
+    <!-- Simple faded castle silhouette. Replace with an image if preferred. -->
+    <svg viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M130 430V235h58v-82l58-44 58 44v82h78v-98h58V80h72v57h58v98h78v195H130Z" stroke="white" stroke-width="10"/>
+      <path d="M246 430V306c0-36 28-64 64-64s64 28 64 64v124" stroke="white" stroke-width="10"/>
+      <path d="M466 430V306c0-36 28-64 64-64s64 28 64 64v124" stroke="white" stroke-width="10"/>
+      <path d="M130 235h518M382 235h188M188 235h116" stroke="white" stroke-width="10"/>
+      <path d="M130 430h518" stroke="white" stroke-width="10"/>
+    </svg>
+  </div>
+
+  <span class="sparkle"></span>
+  <span class="sparkle"></span>
+  <span class="sparkle"></span>
+  <span class="sparkle"></span>
+
+  <main class="page">
+    <section class="intro" id="intro">
+      <p class="eyebrow">You are invited</p>
+      <h1>A Wedding Invitation</h1>
+      <p class="subtitle">Click the envelope to open your invitation</p>
+
+      <button class="envelope-button" id="openInvite" aria-label="Open wedding invitation">
+        <div class="envelope">
+          <div class="envelope-flap"></div>
+          <div class="envelope-base"></div>
+          <div class="seal">♥</div>
+        </div>
+      </button>
+
+      <p class="open-note">Tap to open</p>
+    </section>
+
+    <section class="invite-wrap" id="invite">
+      <article class="invite-card">
+        <div class="floral-line" aria-hidden="true">
+          <!-- Rose-inspired line art -->
+          <svg class="flower" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 44C40 30 52 28 70 34C84 39 95 35 104 22" stroke="#07142f" stroke-width="2" stroke-linecap="round"/>
+            <path d="M38 32C28 20 34 10 47 12C58 13 61 25 52 33" stroke="#d8a6b1" stroke-width="2" stroke-linecap="round"/>
+            <path d="M45 30C42 23 47 18 54 21C60 24 59 31 52 34" stroke="#d8a6b1" stroke-width="2" stroke-linecap="round"/>
+            <path d="M67 35C73 25 82 23 88 31" stroke="#07142f" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+
+          <span>✦</span>
+
+          <!-- Thistle-inspired line art -->
+          <svg class="flower" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 44C42 29 62 30 100 18" stroke="#07142f" stroke-width="2" stroke-linecap="round"/>
+            <path d="M59 30C54 18 61 10 70 15C80 20 77 32 66 36" stroke="#b9a7d8" stroke-width="2" stroke-linecap="round"/>
+            <path d="M56 31L48 22M60 29L60 17M65 29L73 19M66 34L78 36M59 36L50 42" stroke="#b9a7d8" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <p class="eyebrow" style="color: rgba(7,20,47,0.55); margin-bottom: 0;">Together with their families</p>
+
+        <h2 class="names">Tina Shaw<span class="ampersand">&</span> Derek McClean</h2>
+
+        <p class="invite-text">
+          request the pleasure of your company as they celebrate their wedding day.
+        </p>
+
+        <div class="details">
+          <p class="time">Ceremony at 1:00pm</p>
+          <p class="date">Saturday 18th July 2026</p>
+          <p class="venue">Auchen Castle · Beattock, Moffat DG10 9SH</p>
+        </div>
+
+        <p class="invite-text">
+          Please use the links below to respond, choose food options, tell us about any dietary requirements, suggest poems or readings, and find room information.
+        </p>
+
+        <div class="button-grid">
+          <!-- Replace with each Google Form -->
+          <a class="link-button primary" href="https://forms.gle/REPLACE-RSVP-LINK" target="_blank" rel="noopener noreferrer">♥ RSVP</a>
+          <a class="link-button" href="https://forms.gle/REPLACE-FOOD-LINK" target="_blank" rel="noopener noreferrer">🍽 Food Options</a>
+          <a class="link-button" href="https://forms.gle/REPLACE-DIETARY-LINK" target="_blank" rel="noopener noreferrer">🌿 Dietary Requirements</a>
+          <a class="link-button" href="https://forms.gle/REPLACE-POEMS-LINK" target="_blank" rel="noopener noreferrer">✒ Poems & Readings</a>
+          <a class="link-button" href="https://example.com/room-information" target="_blank" rel="noopener noreferrer">🛏 Room Information</a>
+        </div>
+
+        <p class="footer-note">
+          We would be grateful if you could respond by [RSVP deadline].<br />
+          With love, Tina & Derek.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const openButton = document.getElementById('openInvite');
+    const intro = document.getElementById('intro');
+    const invite = document.getElementById('invite');
+
+    openButton.addEventListener('click', () => {
+      intro.classList.add('hidden');
+
+      setTimeout(() => {
+        invite.classList.add('visible');
+        invite.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 650);
+    });
+  </script>
+</body>
+</html>
