@@ -14,7 +14,8 @@
       --soft-gold: #f4ddaa;
       --rose: #d8a6b1;
       --thistle: #b9a7d8;
-      --glass: rgba(255, 248, 236, 0.92);
+      --leaf: #7f9467;
+      --glass: rgba(255, 248, 236, 0.93);
     }
 
     * {
@@ -32,8 +33,8 @@
       font-family: Georgia, 'Times New Roman', serif;
       color: var(--ivory);
       background:
-        radial-gradient(circle at top left, rgba(217, 182, 111, 0.15), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(185, 167, 216, 0.14), transparent 35%),
+        linear-gradient(rgba(3, 8, 23, 0.72), rgba(7, 20, 47, 0.82)),
+        url("auchen-castle.jpg") center / cover fixed no-repeat,
         linear-gradient(135deg, #030817 0%, var(--navy) 48%, #0a1836 100%);
       overflow-x: hidden;
     }
@@ -42,10 +43,12 @@
       content: "";
       position: fixed;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 42px 42px;
+      background:
+        radial-gradient(circle at top left, rgba(217, 182, 111, 0.20), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(185, 167, 216, 0.18), transparent 35%),
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: auto, auto, 42px 42px, 42px 42px;
       pointer-events: none;
       z-index: 0;
     }
@@ -61,21 +64,28 @@
       justify-content: center;
     }
 
-    .castle-bg {
+    .floral-corner {
       position: fixed;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: min(88vw, 760px);
-      opacity: 0.09;
-      z-index: 0;
+      z-index: 1;
+      width: min(42vw, 260px);
+      opacity: 0.36;
       pointer-events: none;
-      filter: blur(0.2px);
+      filter: drop-shadow(0 12px 22px rgba(0,0,0,0.2));
     }
 
-    .castle-bg svg {
-      width: 100%;
-      height: auto;
+    .floral-corner.top-left {
+      top: 0;
+      left: 0;
+    }
+
+    .floral-corner.bottom-right {
+      right: 0;
+      bottom: 0;
+      transform: rotate(180deg);
+    }
+
+    .castle-bg {
+      display: none;
     }
 
     .sparkle {
@@ -233,7 +243,7 @@
     }
 
     .invite-wrap {
-      width: min(100%, 820px);
+      width: min(100%, 860px);
       display: none;
       opacity: 0;
       transform: translateY(32px);
@@ -269,6 +279,17 @@
       pointer-events: none;
     }
 
+    .invite-card::after {
+      content: "❦";
+      position: absolute;
+      left: 50%;
+      bottom: 17px;
+      transform: translateX(-50%);
+      color: rgba(157, 125, 61, 0.45);
+      font-size: 1.7rem;
+      pointer-events: none;
+    }
+
     .floral-line {
       display: flex;
       justify-content: center;
@@ -276,28 +297,41 @@
       gap: 12px;
       margin-bottom: 24px;
       color: var(--navy);
-      opacity: 0.75;
+      opacity: 0.85;
     }
 
     .flower {
-      width: 78px;
-      height: 38px;
+      width: 92px;
+      height: 44px;
     }
 
     .names {
-      font-size: clamp(2.8rem, 10vw, 6.5rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: clamp(2.4rem, 9vw, 5.6rem);
       font-weight: 400;
       color: var(--navy);
       margin: 14px 0 20px;
+      line-height: 0.95;
+    }
+
+    .person-name {
+      display: block;
+      white-space: nowrap;
     }
 
     .ampersand {
+      display: block;
       color: #9d7d3d;
-      font-size: 0.72em;
+      font-size: 0.58em;
+      line-height: 0.8;
+      margin: 4px 0 8px;
     }
 
     .invite-text {
-      max-width: 590px;
+      max-width: 610px;
       margin: 0 auto;
       font-size: clamp(1.05rem, 3vw, 1.28rem);
       line-height: 1.75;
@@ -325,6 +359,26 @@
       letter-spacing: 0.04em;
       color: rgba(7, 20, 47, 0.68);
       margin-top: 6px;
+    }
+
+    .gift-poem {
+      position: relative;
+      max-width: 650px;
+      margin: 30px auto 0;
+      padding: 24px 22px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.52);
+      border: 1px solid rgba(157, 125, 61, 0.22);
+      color: rgba(7, 20, 47, 0.76);
+      font-size: clamp(1rem, 2.6vw, 1.15rem);
+      line-height: 1.72;
+    }
+
+    .gift-poem h3 {
+      font-weight: 400;
+      font-size: clamp(1.35rem, 4vw, 2rem);
+      color: var(--navy);
+      margin-bottom: 12px;
     }
 
     .button-grid {
@@ -378,6 +432,10 @@
     }
 
     @media (max-width: 620px) {
+      body {
+        background-attachment: scroll;
+      }
+
       .page {
         justify-content: flex-start;
         padding-top: 52px;
@@ -394,21 +452,33 @@
       .envelope {
         height: 220px;
       }
+
+      .floral-corner {
+        width: 190px;
+        opacity: 0.24;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="castle-bg" aria-hidden="true">
-    <!-- Simple faded castle silhouette. Replace with an image if preferred. -->
-    <svg viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M130 430V235h58v-82l58-44 58 44v82h78v-98h58V80h72v57h58v98h78v195H130Z" stroke="white" stroke-width="10"/>
-      <path d="M246 430V306c0-36 28-64 64-64s64 28 64 64v124" stroke="white" stroke-width="10"/>
-      <path d="M466 430V306c0-36 28-64 64-64s64 28 64 64v124" stroke="white" stroke-width="10"/>
-      <path d="M130 235h518M382 235h188M188 235h116" stroke="white" stroke-width="10"/>
-      <path d="M130 430h518" stroke="white" stroke-width="10"/>
-    </svg>
-  </div>
+  <svg class="floral-corner top-left" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M28 232C74 166 118 116 212 50" stroke="#f4ddaa" stroke-width="3" stroke-linecap="round"/>
+    <path d="M76 166C52 145 60 111 90 112C118 113 130 143 105 166" stroke="#d8a6b1" stroke-width="3" stroke-linecap="round"/>
+    <path d="M89 158C80 143 89 128 104 132C121 137 120 157 103 166" stroke="#d8a6b1" stroke-width="3" stroke-linecap="round"/>
+    <path d="M144 112C134 84 151 63 175 75C200 88 193 121 164 130" stroke="#b9a7d8" stroke-width="3" stroke-linecap="round"/>
+    <path d="M142 113L120 94M150 105L150 72M160 104L184 78M164 119L199 124M151 125L130 151" stroke="#b9a7d8" stroke-width="3" stroke-linecap="round"/>
+    <path d="M80 180C103 170 124 176 142 196M116 126C128 105 145 96 165 98" stroke="#7f9467" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+
+  <svg class="floral-corner bottom-right" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M28 232C74 166 118 116 212 50" stroke="#f4ddaa" stroke-width="3" stroke-linecap="round"/>
+    <path d="M76 166C52 145 60 111 90 112C118 113 130 143 105 166" stroke="#d8a6b1" stroke-width="3" stroke-linecap="round"/>
+    <path d="M89 158C80 143 89 128 104 132C121 137 120 157 103 166" stroke="#d8a6b1" stroke-width="3" stroke-linecap="round"/>
+    <path d="M144 112C134 84 151 63 175 75C200 88 193 121 164 130" stroke="#b9a7d8" stroke-width="3" stroke-linecap="round"/>
+    <path d="M142 113L120 94M150 105L150 72M160 104L184 78M164 119L199 124M151 125L130 151" stroke="#b9a7d8" stroke-width="3" stroke-linecap="round"/>
+    <path d="M80 180C103 170 124 176 142 196M116 126C128 105 145 96 165 98" stroke="#7f9467" stroke-width="3" stroke-linecap="round"/>
+  </svg>
 
   <span class="sparkle"></span>
   <span class="sparkle"></span>
@@ -455,7 +525,11 @@
 
         <p class="eyebrow" style="color: rgba(7,20,47,0.55); margin-bottom: 0;">Together with their families</p>
 
-        <h2 class="names">Tina Shaw<span class="ampersand">&</span> Derek McClean</h2>
+        <h2 class="names">
+          <span class="person-name">Tina Shaw</span>
+          <span class="ampersand">&amp;</span>
+          <span class="person-name">Derek McClean</span>
+        </h2>
 
         <p class="invite-text">
           request the pleasure of your company as they celebrate their wedding day.
@@ -467,16 +541,29 @@
           <p class="venue">Auchen Castle · Beattock, Moffat DG10 9SH</p>
         </div>
 
+        <section class="gift-poem" aria-label="Gift poem">
+          <h3>A small note about gifts</h3>
+          <p>
+            Your presence at our wedding day<br />
+            is the greatest gift in every way.<br />
+            But if you wish to give a little more,<br />
+            to help us build the life in store,<br />
+            a contribution, however small,<br />
+            would mean the very most of all.<br />
+            No boxed-up gifts, no grand display,<br />
+            just love and wishes on our day.
+          </p>
+        </section>
+
         <p class="invite-text">
           Please use the links below to respond, choose food options, tell us about any dietary requirements, suggest poems or readings, and find room information.
         </p>
 
         <div class="button-grid">
-          <!-- Replace with each Google Form -->
+          <!-- Replace each href with Google Form -->
           <a class="link-button primary" href="https://forms.gle/REPLACE-RSVP-LINK" target="_blank" rel="noopener noreferrer">♥ RSVP</a>
           <a class="link-button" href="https://forms.gle/REPLACE-FOOD-LINK" target="_blank" rel="noopener noreferrer">🍽 Food Options</a>
           <a class="link-button" href="https://forms.gle/REPLACE-DIETARY-LINK" target="_blank" rel="noopener noreferrer">🌿 Dietary Requirements</a>
-          <a class="link-button" href="https://forms.gle/REPLACE-POEMS-LINK" target="_blank" rel="noopener noreferrer">✒ Poems & Readings</a>
           <a class="link-button" href="https://example.com/room-information" target="_blank" rel="noopener noreferrer">🛏 Room Information</a>
         </div>
 
