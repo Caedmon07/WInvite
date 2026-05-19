@@ -3,21 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tina &amp; Derek Wedding Invitation</title>
+  <title>Tina & Derek Wedding Invitation</title>
 
   <style>
     :root {
       --navy: #07142f;
-      --navy-light: #102650;
-      --ivory:#fff8ec;
-      --paper: #fffaf0;
+      --ivory: #fff8ec;
+      --soft-blue: #dbe7f2;
+      --ink: #2d3340;
       --gold: #d9b66f;
-      --soft-gold: #f4ddaa;
-      --rose: #d8a6b1;
-      --deep-rose: #9e4962;
-      --thistle: #b9a7d8;
-      --leaf: #7f9467;
-      --glass: rgba(255, 248, 236, 0.94);
     }
 
     * {
@@ -26,192 +20,102 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       min-height: 100vh;
       font-family: Georgia, 'Times New Roman', serif;
-      color: var(--ivory);
+      color: var(--ink);
       background:
-        linear-gradient(rgba(3, 8, 23, 0.68), rgba(7, 20, 47, 0.82)),
-        url("assets/auchen-castle.jpg") center / cover fixed no-repeat,
-        linear-gradient(135deg, #030817 0%, var(--navy) 48%, #0a1836 100%);
-      overflow-x: hidden;
+        linear-gradient(rgba(255,255,255,0.72), rgba(255,255,255,0.78)),
+        url("assets/auchen-castle.jpg") center / cover fixed no-repeat;
+      overflow: hidden;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(circle at top left, rgba(217, 182, 111, 0.20), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(185, 167, 216, 0.20), transparent 35%),
-        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
-      background-size: auto, auto, 42px 42px, 42px 42px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
+    body::before,
     body::after {
       content: "";
       position: fixed;
-      inset: 0;
-      background: radial-gradient(ellipse at center, transparent 36%, rgba(0,0,0,0.34) 100%);
       pointer-events: none;
       z-index: 0;
+    }
+
+    body::before {
+      inset: 0;
+      background:
+        url("assets/floral-top-left.png") top left / min(58vw, 430px) auto no-repeat,
+        url("assets/floral-bottom-right.png") bottom right / min(58vw, 430px) auto no-repeat,
+        radial-gradient(circle at top right, rgba(88,120,151,0.24), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(88,120,151,0.20), transparent 34%);
+      opacity: 0.95;
+    }
+
+    body::after {
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 45%, rgba(7,20,47,0.20));
     }
 
     .page {
       position: relative;
-      z-index: 2;
+      z-index: 1;
       min-height: 100vh;
-      padding: 28px 18px 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .floral-corner {
-      position: fixed;
-      z-index: 1;
-      width: min(46vw, 310px);
-      opacity: 0.44;
-      pointer-events: none;
-      filter: drop-shadow(0 12px 22px rgba(0,0,0,0.2));
-    }
-
-    .floral-corner.top-left {
-      top: -4px;
-      left: -4px;
-    }
-
-    .floral-corner.bottom-right {
-      right: -4px;
-      bottom: -4px;
-      transform: rotate(180deg);
-    }
-
-    .castle-bg {
-      display: none;
-    }
-
-    .sparkle, .petal {
-      position: fixed;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .sparkle {
-      width: 4px;
-      height: 4px;
-      border-radius: 999px;
-      background: var(--soft-gold);
-      box-shadow: 0 0 14px var(--soft-gold);
-      opacity: 0;
-      animation: sparkle 4s linear infinite;
-    }
-
-    .sparkle:nth-of-type(1) { left: 18%; top: 22%; animation-delay: 0s; }
-    .sparkle:nth-of-type(2) { left: 76%; top: 18%; animation-delay: 1.2s; }
-    .sparkle:nth-of-type(3) { left: 82%; top: 68%; animation-delay: 2.3s; }
-    .sparkle:nth-of-type(4) { left: 12%; top: 76%; animation-delay: 3s; }
-
-    .petal {
-      top: -40px;
-      width: 16px;
-      height: 24px;
-      background: radial-gradient(circle at 35% 28%, #fff4f6 0 12%, var(--rose) 42%, rgba(216,166,177,0.45) 100%);
-      border-radius: 70% 30% 70% 30%;
-      opacity: 0.46;
-      animation: petalFall 13s linear infinite;
-    }
-
-    .petal:nth-of-type(5) { left: 9%; animation-delay: 0s; animation-duration: 14s; }
-    .petal:nth-of-type(6) { left: 31%; animation-delay: 4s; animation-duration: 17s; }
-    .petal:nth-of-type(7) { left: 57%; animation-delay: 2s; animation-duration: 15s; }
-    .petal:nth-of-type(8) { left: 83%; animation-delay: 6s; animation-duration: 18s; }
-
-    @keyframes sparkle {
-      0%, 100% { transform: scale(0); opacity: 0; }
-      35% { transform: scale(1); opacity: 0.8; }
-      70% { transform: scale(0.35); opacity: 0.25; }
-    }
-
-    @keyframes petalFall {
-      0% { transform: translate3d(0, -40px, 0) rotate(0deg); opacity: 0; }
-      12% { opacity: 0.44; }
-      50% { transform: translate3d(38px, 50vh, 0) rotate(170deg); }
-      100% { transform: translate3d(-28px, 108vh, 0) rotate(360deg); opacity: 0; }
-    }
-
-    .intro {
+      display: grid;
+      place-items: center;
+      padding: 28px;
       text-align: center;
-      width: min(100%, 680px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    .intro.hidden {
-      opacity: 0;
-      transform: translateY(-22px) scale(0.98);
-      pointer-events: none;
-      position: absolute;
+    .landing-card {
+      width: min(100%, 720px);
+      padding: clamp(28px, 6vw, 60px);
+      background: rgba(255,255,255,0.56);
+      border: 1px solid rgba(255,255,255,0.75);
+      border-radius: 28px;
+      box-shadow: 0 28px 90px rgba(7,20,47,0.20);
+      backdrop-filter: blur(4px);
     }
 
     .eyebrow {
-      font-family: Arial, sans-serif;
       text-transform: uppercase;
-      letter-spacing: 0.35em;
-      font-size: 0.72rem;
-      color: rgba(255, 248, 236, 0.72);
-      margin-bottom: 16px;
+      letter-spacing: 0.22em;
+      font-size: clamp(0.95rem, 3vw, 1.35rem);
+      line-height: 1.55;
+      margin-bottom: 22px;
     }
 
     h1 {
-      font-size: clamp(2.7rem, 9vw, 5.8rem);
+      font-family: 'Brush Script MT', 'Segoe Script', cursive;
+      font-size: clamp(4.8rem, 16vw, 9rem);
+      line-height: 0.82;
       font-weight: 400;
-      line-height: 0.95;
-      color: var(--ivory);
-      text-shadow: 0 10px 40px rgba(0,0,0,0.35);
-      margin-bottom: 16px;
+      color: var(--ink);
+      margin-bottom: 28px;
     }
 
     .subtitle {
-      font-size: clamp(1rem, 3vw, 1.25rem);
-      color: rgba(255, 248, 236, 0.78);
-      margin-bottom: 38px;
+      font-size: clamp(1.05rem, 3vw, 1.4rem);
+      line-height: 1.5;
+      margin-bottom: 34px;
     }
 
-    .envelope-button {
-      appearance: none;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
+    .envelope-link {
       display: inline-block;
-      padding: 16px;
+      text-decoration: none;
+      color: inherit;
     }
 
     .envelope {
       position: relative;
-      width: min(82vw, 390px);
-      height: 245px;
+      width: min(78vw, 360px);
+      height: 230px;
+      margin: 0 auto 16px;
       animation: float 3s ease-in-out infinite;
-      filter: drop-shadow(0 26px 38px rgba(0,0,0,0.35));
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      filter: drop-shadow(0 24px 32px rgba(7,20,47,0.25));
     }
 
     .envelope-base {
       position: absolute;
-      inset: 60px 0 0;
-      background: linear-gradient(145deg, #fff7e7, #eed9a9);
-      border: 1px solid rgba(217, 182, 111, 0.8);
+      inset: 58px 0 0;
+      background: linear-gradient(145deg, #fffaf0, #e7d8bd);
+      border: 1px solid rgba(120,110,93,0.24);
       border-radius: 0 0 18px 18px;
       overflow: hidden;
     }
@@ -223,7 +127,7 @@
       bottom: 0;
       width: 56%;
       height: 100%;
-      background: rgba(217, 182, 111, 0.2);
+      background: rgba(88,120,151,0.10);
     }
 
     .envelope-base::before {
@@ -240,287 +144,51 @@
       position: absolute;
       left: 0;
       right: 0;
-      top: 60px;
-      height: 126px;
-      background: linear-gradient(145deg, #fffaf0, #e9ce91);
+      top: 58px;
+      height: 124px;
+      background: linear-gradient(145deg, #ffffff, #e8d9bd);
       clip-path: polygon(0 0, 50% 100%, 100% 0);
       transform-origin: top center;
-      transition: transform 0.9s ease;
+      transition: transform 0.7s ease;
       z-index: 3;
-      border-top: 1px solid rgba(217, 182, 111, 0.8);
     }
 
     .seal {
       position: absolute;
       left: 50%;
-      top: 137px;
+      top: 132px;
       transform: translateX(-50%);
-      width: 50px;
-      height: 50px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #a91f3f, #6f1028);
-      border: 2px solid rgba(255, 248, 236, 0.75);
-      z-index: 4;
+      background: linear-gradient(135deg, #8c3348, #5c1c2f);
+      color: white;
       display: grid;
       place-items: center;
-      color: var(--ivory);
+      z-index: 4;
       font-size: 1.25rem;
+      border: 2px solid rgba(255,255,255,0.85);
     }
 
-    .envelope-button:hover .envelope-flap {
-      transform: rotateX(18deg);
+    .envelope-link:hover .envelope-flap,
+    .envelope-link:focus .envelope-flap {
+      transform: rotateX(22deg);
     }
 
     .open-note {
-      margin-top: 14px;
-      color: rgba(255, 248, 236, 0.68);
-      font-family: Arial, sans-serif;
-      font-size: 0.9rem;
-    }
-
-    .invite-wrap {
-      width: min(100%, 900px);
-      display: none;
-      opacity: 0;
-      transform: translateY(32px);
-    }
-
-    .invite-wrap.visible {
-      display: block;
-      animation: revealInvite 1.2s ease forwards;
-    }
-
-    @keyframes revealInvite {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .invite-card {
-      position: relative;
-      background:
-        radial-gradient(circle at top left, rgba(216, 166, 177, 0.18), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(185, 167, 216, 0.18), transparent 36%),
-        var(--glass);
-      color: var(--navy);
-      border-radius: 38px;
-      padding: clamp(34px, 6vw, 66px);
-      border: 1px solid rgba(244, 221, 170, 0.95);
-      box-shadow: 0 30px 90px rgba(0,0,0,0.46), inset 0 0 0 8px rgba(255,255,255,0.28);
-      overflow: hidden;
-      text-align: center;
-    }
-
-    .invite-card::before {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border: 1px solid rgba(157, 125, 61, 0.24);
-      border-radius: 27px;
-      pointer-events: none;
-    }
-
-    .invite-card::after {
-      content: "❦";
-      position: absolute;
-      left: 50%;
-      bottom: 17px;
-      transform: translateX(-50%);
-      color: rgba(157, 125, 61, 0.45);
-      font-size: 1.7rem;
-      pointer-events: none;
-    }
-
-    .card-floral {
-      position: absolute;
-      width: 210px;
-      height: 210px;
-      opacity: 0.16;
-      pointer-events: none;
-    }
-
-    .card-floral.left {
-      left: -55px;
-      top: -48px;
-    }
-
-    .card-floral.right {
-      right: -55px;
-      bottom: -48px;
-      transform: rotate(180deg);
-    }
-
-    .floral-line {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-      color: var(--navy);
-      opacity: 0.9;
-    }
-
-    .flower {
-      width: 108px;
-      height: 48px;
-    }
-
-    .divider {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      margin: 24px auto;
-      color: rgba(157, 125, 61, 0.75);
-    }
-
-    .divider::before,
-    .divider::after {
-      content: "";
-      width: min(22vw, 110px);
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(157, 125, 61, 0.55));
-    }
-
-    .divider::after {
-      background: linear-gradient(90deg, rgba(157, 125, 61, 0.55), transparent);
-    }
-
-    .names {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      font-size: clamp(2.4rem, 9vw, 5.6rem);
-      font-weight: 400;
-      color: var(--navy);
-      margin: 14px 0 20px;
-      line-height: 0.95;
-      text-shadow: 0 2px 0 rgba(255,255,255,0.58);
-    }
-
-    .person-name {
-      display: block;
-      white-space: nowrap;
-    }
-
-    .ampersand {
-      display: block;
-      color: #9d7d3d;
-      font-size: 0.58em;
-      line-height: 0.8;
-      margin: 4px 0 8px;
-    }
-
-    .invite-text {
-      max-width: 610px;
-      margin: 0 auto;
-      font-size: clamp(1.05rem, 3vw, 1.28rem);
-      line-height: 1.75;
-      color: rgba(7, 20, 47, 0.78);
-    }
-
-    .details {
-      margin: 30px auto;
-      padding: 24px 22px;
-      max-width: 580px;
-      border-top: 1px solid rgba(157, 125, 61, 0.28);
-      border-bottom: 1px solid rgba(157, 125, 61, 0.28);
-      background: rgba(255,255,255,0.30);
-      border-radius: 22px;
-    }
-
-    .time {
-      font-size: clamp(1.7rem, 5vw, 2.7rem);
-      color: var(--navy);
-      margin-bottom: 8px;
-    }
-
-    .venue,
-    .date {
-      font-family: Arial, sans-serif;
-      font-size: 0.98rem;
-      letter-spacing: 0.04em;
-      color: rgba(7, 20, 47, 0.68);
-      margin-top: 6px;
-    }
-
-    .gift-poem {
-      position: relative;
-      max-width: 650px;
-      margin: 30px auto 0;
-      padding: 26px 24px;
-      border-radius: 26px;
-      background:
-        linear-gradient(rgba(255,255,255,0.60), rgba(255,255,255,0.46)),
-        radial-gradient(circle at top left, rgba(216, 166, 177, 0.20), transparent 40%);
-      border: 1px solid rgba(157, 125, 61, 0.24);
-      color: rgba(7, 20, 47, 0.76);
-      font-size: clamp(1rem, 2.6vw, 1.15rem);
-      line-height: 1.72;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.28);
-    }
-
-    .gift-poem h3 {
-      font-weight: 400;
-      font-size: clamp(1.35rem, 4vw, 2rem);
-      color: var(--navy);
-      margin-bottom: 12px;
-    }
-
-    .heart-row {
-      margin-top: 18px;
-      color: var(--deep-rose);
-      font-size: 1.4rem;
-      letter-spacing: 0.45em;
-    }
-
-    .button-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .link-button {
-      font-family: Arial, sans-serif;
-      text-decoration: none;
-      border-radius: 999px;
-      padding: 14px 18px;
-      min-height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border: 1px solid rgba(7, 20, 47, 0.2);
-      color: var(--navy);
-      background: rgba(255, 255, 255, 0.70);
-      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
-      font-size: 0.95rem;
-    }
-
-    .link-button.primary {
-      background: linear-gradient(135deg, var(--navy), #102650);
-      color: var(--ivory);
-      border-color: var(--navy);
-      grid-column: 1 / -1;
-      font-size: 1rem;
-    }
-
-    .link-button:hover {
-      transform: translateY(-2px);
-      background: #fff;
-      box-shadow: 0 12px 26px rgba(7, 20, 47, 0.16);
-    }
-
-    .link-button.primary:hover {
-      background: var(--navy-light);
-    }
-
-    .footer-note {
-      margin-top: 26px;
-      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
       font-size: 0.82rem;
-      color: rgba(7, 20, 47, 0.52);
-      line-height: 1.5;
+      color: rgba(45,51,64,0.72);
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
     }
 
     @media (max-width: 620px) {
@@ -528,185 +196,54 @@
         background-attachment: scroll;
       }
 
-      .page {
-        justify-content: flex-start;
-        padding-top: 52px;
-      }
-
-      .button-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .link-button.primary {
-        grid-column: auto;
-      }
-
-      .envelope {
-        height: 220px;
-      }
-
-      .floral-corner {
-        width: 210px;
-        opacity: 0.28;
-      }
-
-      .card-floral {
-        width: 150px;
-        height: 150px;
+      .landing-card {
+        background: rgba(255,255,255,0.68);
       }
     }
   </style>
 </head>
 
 <body>
-  <svg class="floral-corner top-left" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M28 232C74 166 118 116 212 50" stroke="#f4ddaa" stroke-width="3" stroke-linecap="round"/>
-    <path d="M76 166C52 145 60 111 90 112C118 113 130 143 105 166" stroke="#d8a6b1" stroke-width="3" stroke-linecap="round"/>
-    <path d="M89 158C80 143 89 128 104 132C121 137 120 157 103 166" stroke="#d8a6b1" stroke-width="3" stroke-linecap="round"/>
-    <path d="M144 112C134 84 151 63 175 75C200 88 193 121 164 130" stroke="#b9a7d8" stroke-width="3" stroke-linecap="round"/>
-    <path d="M142 113L120 94M150 105L150 72M160 104L184 78M164 119L199 124M151 125L130 151" stroke="#b9a7d8" stroke-width="3" stroke-linecap="round"/>
-    <path d="M80 180C103 170 124 176 142 196M116 126C128 105 145 96 165 98" stroke="#7f9467" stroke-width="3" stroke-linecap="round"/>
-  </svg>
-
-  <svg class="floral-corner bottom-right" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M28 232C74 166 118 116 212 50" stroke="#f4ddaa" stroke-width="3" stroke-linecap="round"/>
-    <path d="M76 166C52 145 60 111 90 112C118 113 130 143 105 166" stroke="#d8a6b1" stroke-width="3" stroke-linecap="round"/>
-    <path d="M89 158C80 143 89 128 104 132C121 137 120 157 103 166" stroke="#d8a6b1" stroke-width="3" stroke-linecap="round"/>
-    <path d="M144 112C134 84 151 63 175 75C200 88 193 121 164 130" stroke="#b9a7d8" stroke-width="3" stroke-linecap="round"/>
-    <path d="M142 113L120 94M150 105L150 72M160 104L184 78M164 119L199 124M151 125L130 151" stroke="#b9a7d8" stroke-width="3" stroke-linecap="round"/>
-    <path d="M80 180C103 170 124 176 142 196M116 126C128 105 145 96 165 98" stroke="#7f9467" stroke-width="3" stroke-linecap="round"/>
-  </svg>
-
-  <span class="sparkle"></span>
-  <span class="sparkle"></span>
-  <span class="sparkle"></span>
-  <span class="sparkle"></span>
-  <span class="petal"></span>
-  <span class="petal"></span>
-  <span class="petal"></span>
-  <span class="petal"></span>
 
   <main class="page">
-    <section class="intro" id="intro">
-      <p class="eyebrow">You are invited</p>
-      <h1>Tina &amp; Derek</h1>
-      <p class="subtitle">Click the envelope to open your invitation</p>
 
-      <button class="envelope-button" id="openInvite" aria-label="Open wedding invitation">
+    <section class="landing-card">
+
+      <p class="eyebrow">
+        Together<br>
+        with their families
+      </p>
+
+      <h1>
+        Tina<br>
+        &<br>
+        Derek
+      </h1>
+
+      <p class="subtitle">
+        Invite you to celebrate love, laughter,<br>
+        and their happily ever after together.
+      </p>
+
+      <a class="envelope-link" href="main.html">
+
         <div class="envelope">
+
           <div class="envelope-flap"></div>
+
           <div class="envelope-base"></div>
+
           <div class="seal">♥</div>
-        </div>
-      </button>
 
-      <p class="open-note">Tap to open</p>
+        </div>
+
+        <p class="open-note">Tap to open</p>
+
+      </a>
+
     </section>
 
-    <section class="invite-wrap" id="invite">
-      <article class="invite-card">
-        <svg class="card-floral left" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M28 232C74 166 118 116 212 50" stroke="#9d7d3d" stroke-width="3" stroke-linecap="round"/>
-          <path d="M76 166C52 145 60 111 90 112C118 113 130 143 105 166" stroke="#9e4962" stroke-width="3" stroke-linecap="round"/>
-          <path d="M144 112C134 84 151 63 175 75C200 88 193 121 164 130" stroke="#7c64a7" stroke-width="3" stroke-linecap="round"/>
-          <path d="M80 180C103 170 124 176 142 196M116 126C128 105 145 96 165 98" stroke="#7f9467" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-        <svg class="card-floral right" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M28 232C74 166 118 116 212 50" stroke="#9d7d3d" stroke-width="3" stroke-linecap="round"/>
-          <path d="M76 166C52 145 60 111 90 112C118 113 130 143 105 166" stroke="#9e4962" stroke-width="3" stroke-linecap="round"/>
-          <path d="M144 112C134 84 151 63 175 75C200 88 193 121 164 130" stroke="#7c64a7" stroke-width="3" stroke-linecap="round"/>
-          <path d="M80 180C103 170 124 176 142 196M116 126C128 105 145 96 165 98" stroke="#7f9467" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-        <div class="floral-line" aria-hidden="true">
-          <!-- Rose-inspired line art -->
-          <svg class="flower" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 44C40 30 52 28 70 34C84 39 95 35 104 22" stroke="#07142f" stroke-width="2" stroke-linecap="round"/>
-            <path d="M38 32C28 20 34 10 47 12C58 13 61 25 52 33" stroke="#d8a6b1" stroke-width="2" stroke-linecap="round"/>
-            <path d="M45 30C42 23 47 18 54 21C60 24 59 31 52 34" stroke="#d8a6b1" stroke-width="2" stroke-linecap="round"/>
-            <path d="M67 35C73 25 82 23 88 31" stroke="#07142f" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-
-          <span>✦</span>
-
-          <!-- Thistle-inspired line art -->
-          <svg class="flower" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 44C42 29 62 30 100 18" stroke="#07142f" stroke-width="2" stroke-linecap="round"/>
-            <path d="M59 30C54 18 61 10 70 15C80 20 77 32 66 36" stroke="#b9a7d8" stroke-width="2" stroke-linecap="round"/>
-            <path d="M56 31L48 22M60 29L60 17M65 29L73 19M66 34L78 36M59 36L50 42" stroke="#b9a7d8" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </div>
-
-        <h2 class="names">
-          <span class="person-name">Tina</span>
-          <span class="ampersand">&amp;</span>
-          <span class="person-name">Derek</span>
-        </h2>
-
-        <div class="divider">✦</div>
-
-        <p class="invite-text">
-          invite you to celebrate their wedding.
-        </p>
-
-        <div class="details">
-          <p class="time">Ceremony at 1:00pm</p>
-          <p class="date">Saturday 17th July 2027</p>
-          <p class="venue">Auchen Castle, Moffat, Scotland DG10 9SH</p>
-        </div>
-
-        <div class="divider">❦</div>
-
-        <section class="gift-poem" aria-label="Gift poem">
-          <h3>A small note about gifts</h3>
-          <p>
-            We've moved two homes together, along with our pots and pans.<br />
-            As we don't need any gifts, we have another plan.<br />
-            We know it's not traditional, and not the way it's done.<br />
-            Rather than a wedding list, we'd love a bit of sun.<br /><br />
-            So if you'd like to give a gift, and send us on our way,<br />
-            A donation to our honeymoon would really make our day.<br />
-            Then while we are relaxing, outside a bar or by the pool,<br />
-            We'll sit back and know that it is truly thanks to you.<br /><br />
-            Tina &amp; Derek
-          </p>
-          <div class="heart-row" aria-hidden="true">♥ ♡ ♥ ♡ ♥</div>
-        </section>
-
-        <div class="divider">✦</div>
-
-        <p class="invite-text">
-          Please use the links below to RSVP, choose food options, tell us about any dietary requirements, request a song for the evening disco, and find room information. Rooms are available on Friday and Saturday; room details and prices will be added soon.
-        </p>
-
-        <div class="button-grid">
-          <!-- Replace each href with your real Google Form / information link. -->
-          <a class="link-button primary" href="https://forms.gle/pY8AkBbvvVBGxg579" target="_blank" rel="noopener noreferrer">♥ RSVP</a>
-          <a class="link-button" href="https://forms.gle/REPLACE-FOOD-LINK" target="_blank" rel="noopener noreferrer">🍽 Food Options</a>
-          <a class="link-button" href="https://forms.gle/REPLACE-DIETARY-LINK" target="_blank" rel="noopener noreferrer">🌿 Dietary Requirements</a>
-          <a class="link-button" href="https://forms.gle/REPLACE-SONG-REQUESTS-LINK" target="_blank" rel="noopener noreferrer">🎵 Song Requests</a>
-          <a class="link-button" href="https://example.com/room-information" target="_blank" rel="noopener noreferrer">🛏 Room Information &amp; Prices</a>
-        </div>
-
-        <p class="footer-note">
-          With love, Tina &amp; Derek.
-        </p>
-      </article>
-    </section>
   </main>
 
-  <script>
-    const openButton = document.getElementById('openInvite');
-    const intro = document.getElementById('intro');
-    const invite = document.getElementById('invite');
-
-    openButton.addEventListener('click', () => {
-      intro.classList.add('hidden');
-
-      setTimeout(() => {
-        invite.classList.add('visible');
-        invite.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 650);
-    });
-  </script>
 </body>
 </html>
