@@ -12,6 +12,9 @@
       --ink: #2d3340;
       --blue: #526a84;
       --rose: #8c3348;
+      --paper: #f4eee4;
+      --paper-shadow: #e6dccd;
+      --paper-line: rgba(125, 109, 88, 0.18);
     }
 
     * {
@@ -20,14 +23,37 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       min-height: 100vh;
       font-family: 'Ovo', serif;
       color: var(--ink);
-      background: #dfe8f0;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.55), transparent 38%),
+        radial-gradient(circle at bottom, rgba(191,170,137,0.16), transparent 34%),
+        linear-gradient(180deg, #efe5d7 0%, #f7f0e7 45%, #eee4d6 100%);
       overflow-x: hidden;
+      position: relative;
     }
-    
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.2;
+      background-image:
+        radial-gradient(rgba(74, 57, 39, 0.10) 0.6px, transparent 0.8px),
+        radial-gradient(rgba(255,255,255,0.38) 0.7px, transparent 0.9px),
+        linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08));
+      background-size: 18px 18px, 24px 24px, 100% 100%;
+      background-position: 0 0, 9px 11px, 0 0;
+      mix-blend-mode: multiply;
+    }
+
     .page {
       min-height: 100vh;
       display: grid;
@@ -42,18 +68,18 @@
       min-height: 980px;
       padding: clamp(52px, 7vw, 84px);
       background:
-        url("assets/base water colour.png") center / cover no-repeat;
-      border: 1px solid rgba(120,130,150,0.18);
-      border-radius: 4px;
-      box-shadow: 0 22px 70px rgba(20,30,50,0.18);
+        linear-gradient(rgba(255,255,255,0.34), rgba(255,255,255,0.22)),
+        url("assets/base water colour.png") center / cover no-repeat,
+        linear-gradient(180deg, #f8f1e8 0%, #f1e7d8 100%);
+      border: 1px solid var(--paper-line);
+      border-radius: 8px;
+      box-shadow:
+        0 22px 70px rgba(20,30,50,0.16),
+        inset 0 0 0 1px rgba(255,255,255,0.38);
       overflow: hidden;
+      isolation: isolate;
     }
 
-    .content {
-      position: relative;
-      z-index: 2;
-    }
-    
     .landing-card::before {
       content: "";
       position: absolute;
@@ -70,9 +96,31 @@
       z-index: 0;
     }
 
+    .landing-card::after {
+      content: "";
+      position: absolute;
+      inset: 12% 13%;
+      pointer-events: none;
+      background:
+        url("assets/rose, top right.png") center top / 170px auto no-repeat,
+        url("assets/thistel bottom left.png") center bottom / 190px auto no-repeat,
+        radial-gradient(circle at center, rgba(255,255,255,0.55), rgba(255,255,255,0.08) 70%, transparent 100%);
+      opacity: 0.34;
+      z-index: 0;
+      filter: saturate(0.95);
+    }
+
     .content {
       position: relative;
       z-index: 1;
+      max-width: 560px;
+      margin: 0 auto;
+      padding: clamp(26px, 4vw, 38px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.54), rgba(255,255,255,0.40));
+      border: 1px solid rgba(125, 109, 88, 0.10);
+      border-radius: 28px;
+      backdrop-filter: blur(1.5px);
+      box-shadow: 0 14px 38px rgba(60, 48, 35, 0.08);
     }
 
     .eyebrow {
@@ -249,29 +297,23 @@
     }
 
     @media (max-width: 620px) {
-      body {
-        background-attachment: scroll;
+      .landing-card {
+        min-height: auto;
+        padding: 34px 18px;
       }
 
-    .content {
-      position: relative;
-      z-index: 2;
-    }
+      .landing-card::after {
+        inset: 14% 10%;
+        background:
+          url("assets/rose, top right.png") center top / 130px auto no-repeat,
+          url("assets/thistel bottom left.png") center bottom / 150px auto no-repeat,
+          radial-gradient(circle at center, rgba(255,255,255,0.52), rgba(255,255,255,0.06) 70%, transparent 100%);
+        opacity: 0.28;
+      }
 
-    .invite-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        url("assets/rose, top right.png") top left / 210px auto no-repeat,
-        url("assets/top right water colour.png") top right / 330px auto no-repeat,
-        url("assets/top right paint splatters.png") top right / 390px auto no-repeat,
-        url("assets/thistel bottom left.png") bottom right / 230px auto no-repeat,
-        url("assets/bottom left water color.png") bottom left / 340px auto no-repeat,
-        url("assets/bottom left paint splatters.png") bottom left / 380px auto no-repeat;
-      z-index: 0;
-    }
+      .content {
+        padding: 22px 16px;
+      }
     }
   </style>
 </head>

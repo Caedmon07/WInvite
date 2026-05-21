@@ -3,15 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Tina & Derek Wedding Details</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Ovo&display=swap" rel="stylesheet">
 
   <script>
-    if (sessionStorage.getItem("weddingInviteUnlocked") !== "true") {
-      window.location.href = "index.html";
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+      const notice = document.getElementById("previewNotice");
+      const isUnlocked = sessionStorage.getItem("weddingInviteUnlocked") === "true";
+      const isLocalPreview = window.location.protocol === "file:";
+
+      if (!isUnlocked && !isLocalPreview) {
+        window.location.href = "index.html";
+        return;
+      }
+
+      if (!isUnlocked && isLocalPreview && notice) {
+        notice.hidden = false;
+      }
+    });
   </script>
 
   <style>
@@ -21,6 +31,8 @@
       --blue: #6f879f;
       --deep-blue: #526a84;
       --rose: #8c3348;
+      --paper: #f4eee4;
+      --paper-line: rgba(125, 109, 88, 0.18);
     }
 
     * {
@@ -37,10 +49,29 @@
       min-height: 100vh;
       font-family: 'Ovo', serif;
       color: var(--ink);
-      background: #dfe8f0;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.55), transparent 38%),
+        radial-gradient(circle at bottom, rgba(191,170,137,0.16), transparent 34%),
+        linear-gradient(180deg, #efe5d7 0%, #f7f0e7 45%, #eee4d6 100%);
       overflow-x: hidden;
-    } 
-    
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.2;
+      background-image:
+        radial-gradient(rgba(74, 57, 39, 0.10) 0.6px, transparent 0.8px),
+        radial-gradient(rgba(255,255,255,0.38) 0.7px, transparent 0.9px),
+        linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08));
+      background-size: 18px 18px, 24px 24px, 100% 100%;
+      background-position: 0 0, 9px 11px, 0 0;
+      mix-blend-mode: multiply;
+    }
+
     .page {
       min-height: 100vh;
       display: grid;
@@ -55,17 +86,17 @@
       min-height: 1100px;
       padding: clamp(62px, 8vw, 96px) clamp(28px, 7vw, 86px);
       background:
-        url("assets/base water colour.png") center / cover no-repeat;
-      border: 1px solid rgba(120,130,150,0.18);
-      border-radius: 4px;
-      box-shadow: 0 22px 70px rgba(20,30,50,0.18);
+        linear-gradient(rgba(255,255,255,0.34), rgba(255,255,255,0.22)),
+        url("assets/base water colour.png") center / cover no-repeat,
+        linear-gradient(180deg, #f8f1e8 0%, #f1e7d8 100%);
+      border: 1px solid var(--paper-line);
+      border-radius: 8px;
+      box-shadow:
+        0 22px 70px rgba(20,30,50,0.16),
+        inset 0 0 0 1px rgba(255,255,255,0.38);
       text-align: center;
       overflow: hidden;
-    }
-
-    .content {
-      position: relative;
-      z-index: 2;
+      isolation: isolate;
     }
 
     .invite-card::before {
@@ -81,20 +112,46 @@
         url("assets/bottom left water color.png") bottom left / 340px auto no-repeat,
         url("assets/bottom left paint splatters.png") bottom left / 380px auto no-repeat;
       z-index: 0;
+      opacity: 0.92;
     }
 
     .invite-card::after {
       content: "";
       position: absolute;
-      inset: 18px;
-      border: 1px solid rgba(45,51,64,0.07);
+      inset: 12% 11%;
       pointer-events: none;
-      z-index: 1;
+      background:
+        url("assets/rose, top right.png") center top / 170px auto no-repeat,
+        url("assets/thistel bottom left.png") center bottom / 190px auto no-repeat,
+        radial-gradient(circle at center, rgba(255,255,255,0.55), rgba(255,255,255,0.08) 70%, transparent 100%);
+      opacity: 0.32;
+      z-index: 0;
+      filter: saturate(0.95);
     }
 
     .content {
       position: relative;
-      z-index: 2;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: clamp(28px, 4vw, 42px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.54), rgba(255,255,255,0.40));
+      border: 1px solid rgba(125, 109, 88, 0.10);
+      border-radius: 28px;
+      backdrop-filter: blur(1.5px);
+      box-shadow: 0 14px 38px rgba(60, 48, 35, 0.08);
+    }
+
+    .preview-notice {
+      margin: 0 auto 24px;
+      max-width: 520px;
+      padding: 12px 16px;
+      border-radius: 16px;
+      background: rgba(82,106,132,0.10);
+      border: 1px solid rgba(82,106,132,0.18);
+      color: var(--muted-ink);
+      font-size: 0.95rem;
+      line-height: 1.5;
     }
 
     .eyebrow {
@@ -187,9 +244,11 @@
       margin: 0 auto 26px;
       background: rgba(255,255,255,0.68);
       border: 1px solid rgba(82,106,132,0.16);
+      border-radius: 20px;
       padding: 24px;
       line-height: 1.72;
       font-size: clamp(1rem, 2.6vw, 1.16rem);
+      box-shadow: 0 8px 24px rgba(60, 48, 35, 0.05);
     }
 
     .gift-poem h2,
@@ -261,32 +320,22 @@
     }
 
     @media (max-width: 640px) {
-      body {
-        background-attachment: scroll;
+      .invite-card {
+        min-height: auto;
+        padding: 72px 18px 28px;
       }
 
-      .invite-card {
-        padding-top: 72px;
+      .invite-card::after {
+        inset: 14% 8%;
+        background:
+          url("assets/rose, top right.png") center top / 130px auto no-repeat,
+          url("assets/thistel bottom left.png") center bottom / 150px auto no-repeat,
+          radial-gradient(circle at center, rgba(255,255,255,0.52), rgba(255,255,255,0.06) 70%, transparent 100%);
+        opacity: 0.28;
       }
 
       .content {
-        position: relative;
-        z-index: 2;
-      }
-
-      .invite-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background:
-          url("assets/rose, top right.png") top left / 210px auto no-repeat,
-          url("assets/top right water colour.png") top right / 330px auto no-repeat,
-          url("assets/top right paint splatters.png") top right / 390px auto no-repeat,
-          url("assets/thistel bottom left.png") bottom right / 230px auto no-repeat,
-          url("assets/bottom left water color.png") bottom left / 340px auto no-repeat,
-          url("assets/bottom left paint splatters.png") bottom left / 380px auto no-repeat;
-        z-index: 0;
+        padding: 22px 16px;
       }
 
       .button-grid {
@@ -304,6 +353,10 @@
   <main class="page">
     <article class="invite-card">
       <div class="content">
+        <p class="preview-notice" id="previewNotice" hidden>
+          Preview mode: this page is visible without the password because it is being opened locally. On your hosted site, it will still send locked visitors back to index.html.
+        </p>
+
         <p class="eyebrow">
           Together<br>
           with their families
@@ -334,7 +387,6 @@
 
         <section class="gift-poem">
           <h2>A small note about gifts</h2>
-
           <p>
             We've moved two homes together, along with our pots and pans.<br>
             As we don't need any gifts, we have another plan.<br>
@@ -354,12 +406,10 @@
 
         <section class="info-box">
           <h2>Wedding information</h2>
-
           <p>
             Rooms are available on Friday and Saturday.
             Room details and prices will be added soon.
           </p>
-
           <p style="margin-top:12px;">
             If you would like to request a song to be played in the evening disco,
             we will do our best to accommodate.
