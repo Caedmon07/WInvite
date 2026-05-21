@@ -111,7 +111,7 @@
       width:
         min(100%, 760px);
 
-      min-height: 1100px;
+      min-height: 1200px;
 
       padding:
         clamp(54px, 8vw, 88px)
@@ -363,78 +363,19 @@
       letter-spacing: 0.5em;
     }
 
-    .gift-poem,
-    .info-box {
-
-      max-width: 680px;
-
-      margin:
-        0 auto 30px;
-
-      background:
-        rgba(255,255,255,0.64);
-
-      border:
-        1px solid rgba(82,106,132,0.12);
-
-      border-radius: 24px;
-
-      padding:
-        30px 28px;
-
-      line-height: 1.9;
-
-      font-size:
-        clamp(1rem, 2.4vw, 1.1rem);
-
-      color:
-        rgba(45,51,64,0.86);
-
-      box-shadow:
-        0 10px 24px rgba(44,56,76,0.05);
-    }
-
-    .gift-poem h2,
-    .info-box h2 {
-
-      font-family:
-        "Parisienne",
-        cursive;
-
-      font-size:
-        clamp(2.1rem, 5vw, 3rem);
-
-      font-weight: 400;
-
-      margin-bottom: 18px;
-
-      color: var(--ink);
-    }
-
-    .heart-row {
-
-      margin-top: 16px;
-
-      color: var(--rose);
-
-      font-size: 1.35rem;
-
-      letter-spacing: 0.35em;
-    }
-
     .button-grid {
 
       max-width: 680px;
 
       margin:
-        34px auto 20px;
+        34px auto 34px;
 
       display: grid;
 
       grid-template-columns:
         repeat(2, minmax(0, 1fr));
 
-      gap: 12px;
+      gap: 14px;
     }
 
     .link-button {
@@ -496,6 +437,52 @@
       border: 0;
 
       grid-column: 1 / -1;
+    }
+
+    .info-box {
+
+      max-width: 680px;
+
+      margin:
+        0 auto 30px;
+
+      background:
+        rgba(255,255,255,0.64);
+
+      border:
+        1px solid rgba(82,106,132,0.12);
+
+      border-radius: 24px;
+
+      padding:
+        30px 28px;
+
+      line-height: 1.9;
+
+      font-size:
+        clamp(1rem, 2.4vw, 1.1rem);
+
+      color:
+        rgba(45,51,64,0.86);
+
+      box-shadow:
+        0 10px 24px rgba(44,56,76,0.05);
+    }
+
+    .info-box h2 {
+
+      font-family:
+        "Parisienne",
+        cursive;
+
+      font-size:
+        clamp(2.1rem, 5vw, 3rem);
+
+      font-weight: 400;
+
+      margin-bottom: 18px;
+
+      color: var(--ink);
     }
 
     .footer-note {
@@ -587,6 +574,100 @@
 
       <p class="venue-sub">
         Beattock, Moffat, Scotland DG10 9SH
+      </p>
+
+      <div class="divider">
+        ♡ ♥ ♡
+      </div>
+
+      <div class="button-grid">
+
+        <a
+          class="link-button primary"
+          href="https://forms.gle/REPLACE-RSVP-LINK"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          ♥ RSVP
+
+        </a>
+
+        <a
+          class="link-button"
+          href="https://forms.gle/REPLACE-FOOD-DIETARY-LINK"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          🍽 Food & Dietary
+
+        </a>
+
+        <a
+          class="link-button"
+          href="https://forms.gle/REPLACE-SONG-REQUESTS-LINK"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          🎵 Song Requests
+
+        </a>
+
+        <a
+          class="link-button"
+          href="https://forms.gle/REPLACE-ACCOMMODATION-LINK"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          🛏 Accommodation
+
+        </a>
+
+      </div>
+
+      <section class="info-box">
+
+        <h2>
+          Accommodation
+        </h2>
+
+        <p>
+
+          Accommodation is available
+          at Auchen Castle for both
+          Friday and Saturday evening.
+
+        </p>
+
+        <p style="margin-top:16px;">
+
+          Rates and room options
+          can be viewed using the
+          accommodation link above.
+
+        </p>
+
+        <p style="margin-top:16px;">
+
+          Guests can also request
+          their preferred room type
+          through the accommodation form.
+
+        </p>
+
+      </section>
+
+      <p class="footer-note">
+
+        Please RSVP as soon as possible.<br>
+
+        With love,<br>
+
+        Tina & Derek
+
       </p>
 
     </div>
