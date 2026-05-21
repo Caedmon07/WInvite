@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tina & Derek Wedding Details</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Ovo&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Ovo&display=swap" rel="stylesheet">
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const notice = document.getElementById("previewNotice");
@@ -12,7 +14,7 @@
       const isLocalPreview = window.location.protocol === "file:";
 
       if (!isUnlocked && !isLocalPreview) {
-        window.location.href = "index.html";
+        window.location.assign("index.html");
         return;
       }
 
@@ -21,7 +23,16 @@
       }
     });
   </script>
+
   <style>
+    @font-face {
+      font-family: "Brittany Signature";
+      src:
+        local("Brittany Signature"),
+        local("BrittanySignature");
+      font-display: swap;
+    }
+
     :root {
       --ink: #2d3340;
       --muted-ink: rgba(45,51,64,0.72);
@@ -32,11 +43,20 @@
       --panel: rgba(255, 255, 255, 0.72);
       --panel-strong: rgba(255, 255, 255, 0.84);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       min-height: 100vh;
-      font-family: 'Ovo', serif;
+      font-family: "Ovo", serif;
       color: var(--ink);
       background:
         linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)),
@@ -44,6 +64,7 @@
       overflow-x: hidden;
       position: relative;
     }
+
     body::before {
       content: "";
       position: fixed;
@@ -55,6 +76,7 @@
       mix-blend-mode: screen;
       opacity: 0.7;
     }
+
     .page {
       min-height: 100vh;
       display: grid;
@@ -62,6 +84,7 @@
       padding: 32px 16px;
       text-align: center;
     }
+
     .invite-card {
       position: relative;
       width: min(100%, 760px);
@@ -69,12 +92,17 @@
       padding: clamp(54px, 8vw, 88px) clamp(24px, 7vw, 78px);
       border: 1px solid var(--paper-line);
       border-radius: 10px;
-      box-shadow: 0 24px 70px rgba(22, 32, 48, 0.14), inset 0 0 0 1px rgba(255,255,255,0.45);
+      box-shadow:
+        0 24px 70px rgba(22, 32, 48, 0.14),
+        inset 0 0 0 1px rgba(255,255,255,0.45);
       overflow: hidden;
       isolation: isolate;
-      background: linear-gradient(rgba(255,255,255,0.18), rgba(255,255,255,0.18)), rgba(255,255,255,0.12);
+      background:
+        linear-gradient(rgba(255,255,255,0.18), rgba(255,255,255,0.18)),
+        rgba(255,255,255,0.12);
       backdrop-filter: blur(1px);
     }
+
     .invite-card::before {
       content: "";
       position: absolute;
@@ -90,6 +118,7 @@
       opacity: 0.98;
       z-index: 0;
     }
+
     .invite-card::after {
       content: "";
       position: absolute;
@@ -102,6 +131,7 @@
       opacity: 0.3;
       z-index: 0;
     }
+
     .content {
       position: relative;
       z-index: 1;
@@ -112,7 +142,26 @@
       border: 1px solid rgba(82,106,132,0.12);
       border-radius: 28px;
       box-shadow: 0 12px 30px rgba(44, 56, 76, 0.08);
+      font-family: "Ovo", serif;
     }
+
+    .preview-notice,
+    .eyebrow,
+    .ampersand,
+    .invite-text,
+    .date-row,
+    .time,
+    .venue-main,
+    .venue-sub,
+    .divider,
+    .gift-poem,
+    .info-box,
+    .button-grid,
+    .back-link,
+    .footer-note {
+      font-family: "Ovo", serif;
+    }
+
     .preview-notice {
       margin: 0 auto 24px;
       max-width: 520px;
@@ -124,6 +173,7 @@
       font-size: 0.95rem;
       line-height: 1.5;
     }
+
     .eyebrow {
       text-transform: uppercase;
       letter-spacing: 0.18em;
@@ -132,28 +182,34 @@
       margin-bottom: 30px;
       color: rgba(45,51,64,0.94);
     }
+
     .names {
-      font-family: 'Brittany Signature', 'Great Vibes', cursive;
+      font-family: "Brittany Signature", "Great Vibes", cursive;
       font-size: clamp(5.3rem, 15vw, 9.2rem);
       line-height: 0.86;
-      font-weight: 600;
+      font-weight: 400;
       color: var(--ink);
       margin: 8px 0 44px;
       text-shadow: 0 1px 0 rgba(255,255,255,0.65);
     }
-    .names span { display: block; }
+
+    .names span {
+      display: block;
+    }
+
     .ampersand {
-      font-family: 'Ovo', serif;
       font-size: 0.52em;
       line-height: 1;
       margin: 8px 0;
     }
+
     .invite-text {
       max-width: 660px;
       margin: 0 auto 46px;
       font-size: clamp(1.18rem, 3vw, 1.65rem);
       line-height: 1.5;
     }
+
     .date-row {
       display: flex;
       align-items: center;
@@ -161,33 +217,46 @@
       gap: clamp(12px, 4vw, 24px);
       margin: 30px 0;
     }
+
     .date-side {
       font-size: clamp(1.35rem, 4vw, 2.25rem);
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
+
     .date-day {
-      font-family: 'Brittany Signature', 'Great Vibes', cursive;
+      font-family: "Brittany Signature", "Great Vibes", cursive;
       font-size: clamp(4.6rem, 12vw, 7.2rem);
       line-height: 0.8;
       border-left: 2px solid var(--blue);
       border-right: 2px solid var(--blue);
       padding: 0 18px 8px;
-      font-weight: 600;
+      font-weight: 400;
     }
-    .time { font-size: clamp(1.7rem, 4.5vw, 2.45rem); margin: 10px 0 8px; }
-    .venue-main { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
+
+    .time {
+      font-size: clamp(1.7rem, 4.5vw, 2.45rem);
+      margin: 10px 0 8px;
+    }
+
+    .venue-main {
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+    }
+
     .venue-sub {
       font-size: clamp(1.15rem, 3.4vw, 1.85rem);
       line-height: 1.35;
       margin-bottom: 42px;
     }
+
     .divider {
       color: var(--blue);
       font-size: 1.55rem;
       margin: 32px auto;
       letter-spacing: 0.4em;
     }
+
     .gift-poem,
     .info-box {
       max-width: 680px;
@@ -200,18 +269,21 @@
       font-size: clamp(1rem, 2.6vw, 1.16rem);
       box-shadow: 0 8px 24px rgba(60, 48, 35, 0.05);
     }
+
     .gift-poem h2,
     .info-box h2 {
       font-weight: 400;
       font-size: clamp(1.4rem, 4vw, 2.1rem);
       margin-bottom: 12px;
     }
+
     .heart-row {
       margin-top: 16px;
       color: var(--rose);
       font-size: 1.35rem;
       letter-spacing: 0.35em;
     }
+
     .button-grid {
       max-width: 680px;
       margin: 34px auto 20px;
@@ -219,6 +291,7 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
+
     .link-button {
       display: flex;
       justify-content: center;
@@ -230,19 +303,22 @@
       color: var(--ink);
       background: rgba(255,255,255,0.86);
       border: 1px solid rgba(82,106,132,0.25);
-      font-family: 'Ovo', serif;
+      font-family: "Ovo", serif;
       transition: transform 0.2s ease, background 0.2s ease;
     }
+
     .link-button:hover,
     .link-button:focus {
       transform: translateY(-2px);
       background: #ffffff;
     }
+
     .link-button.primary {
       grid-column: 1 / -1;
       background: var(--deep-blue);
       color: white;
     }
+
     .back-link {
       display: inline-block;
       margin-top: 22px;
@@ -250,19 +326,28 @@
       color: var(--muted-ink);
       text-decoration: none;
     }
-    .back-link:hover { text-decoration: underline; }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
     .footer-note {
       margin-top: 22px;
       color: var(--muted-ink);
       font-size: 0.9rem;
       line-height: 1.5;
     }
+
     @media (max-width: 640px) {
-      body { background-attachment: scroll; }
+      body {
+        background-attachment: scroll;
+      }
+
       .invite-card {
         min-height: auto;
         padding: 68px 16px 28px;
       }
+
       .invite-card::before {
         background:
           url("rose-top-right.png") top left / 180px auto no-repeat,
@@ -272,6 +357,7 @@
           url("bottom-left-watercolour.png") bottom left / 255px auto no-repeat,
           url("bottom-left-splatters.png") bottom left / 300px auto no-repeat;
       }
+
       .invite-card::after {
         inset: 14% 8%;
         background:
@@ -279,12 +365,22 @@
           url("thistle-bottom-left.png") center bottom / 138px auto no-repeat,
           radial-gradient(circle at center, rgba(255,255,255,0.52), rgba(255,255,255,0.08) 68%, transparent 100%);
       }
-      .content { padding: 22px 16px; }
-      .button-grid { grid-template-columns: 1fr; }
-      .link-button.primary { grid-column: auto; }
+
+      .content {
+        padding: 22px 16px;
+      }
+
+      .button-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .link-button.primary {
+        grid-column: auto;
+      }
     }
   </style>
 </head>
+
 <body>
   <main class="page">
     <article class="invite-card">
@@ -292,22 +388,35 @@
         <p class="preview-notice" id="previewNotice" hidden>
           Preview mode: this page is visible without the password because it is being opened locally. On your hosted site, it will still send locked visitors back to index.html.
         </p>
-        <p class="eyebrow">Together<br>with their families</p>
+
+        <p class="eyebrow">
+          Together<br>
+          with their families
+        </p>
+
         <h1 class="names">
           <span>Tina</span>
           <span class="ampersand">&amp;</span>
           <span>Derek</span>
         </h1>
-        <p class="invite-text">Invite you to celebrate love, laughter, and<br>their happily ever after together.</p>
+
+        <p class="invite-text">
+          Invite you to celebrate love, laughter, and<br>
+          their happily ever after together.
+        </p>
+
         <div class="date-row">
           <span class="date-side">July</span>
           <span class="date-day">17</span>
           <span class="date-side">2027</span>
         </div>
+
         <p class="time">13:00</p>
         <p class="venue-main">Auchen Castle</p>
         <p class="venue-sub">Beattock, Moffat, DG10 9SH</p>
+
         <div class="divider">♡ ♥ ♡</div>
+
         <section class="gift-poem">
           <h2>A small note about gifts</h2>
           <p>
@@ -315,28 +424,59 @@
             As we don't need any gifts, we have another plan.<br>
             We know it's not traditional, and not the way it's done.<br>
             Rather than a wedding list, we'd love a bit of sun.<br><br>
+
             So if you'd like to give a gift, and send us on our way,<br>
             A donation to our honeymoon would really make our day.<br>
             Then while we are relaxing, outside a bar or by the pool,<br>
             We'll sit back and know that it is truly thanks to you.<br><br>
+
             Tina &amp; Derek
           </p>
+
           <div class="heart-row">♥ ♡ ♥ ♡ ♥</div>
         </section>
+
         <section class="info-box">
           <h2>Wedding information</h2>
-          <p>Rooms are available on Friday and Saturday. Room details and prices will be added soon.</p>
-          <p style="margin-top:12px;">If you would like to request a song to be played in the evening disco, we will do our best to accommodate.</p>
+          <p>
+            Rooms are available on Friday and Saturday.
+            Room details and prices will be added soon.
+          </p>
+          <p style="margin-top:12px;">
+            If you would like to request a song to be played in the evening disco,
+            we will do our best to accommodate.
+          </p>
         </section>
+
         <div class="button-grid">
-          <a class="link-button primary" href="mailto:delsg2@yahoo.co.uk?subject=Wedding%20RSVP%20-%20Tina%20%26%20Derek">♥ RSVP by Email</a>
-          <a class="link-button" href="https://forms.gle/REPLACE-FOOD-LINK" target="_blank" rel="noopener noreferrer">🍽 Food Options</a>
-          <a class="link-button" href="https://forms.gle/REPLACE-DIETARY-LINK" target="_blank" rel="noopener noreferrer">🌿 Dietary Requirements</a>
-          <a class="link-button" href="https://forms.gle/REPLACE-SONG-REQUESTS-LINK" target="_blank" rel="noopener noreferrer">🎵 Song Requests</a>
-          <a class="link-button" href="https://example.com/room-information" target="_blank" rel="noopener noreferrer">🛏 Room Information &amp; Prices</a>
+          <a class="link-button primary" href="mailto:delsg2@yahoo.co.uk?subject=Wedding%20RSVP%20-%20Tina%20%26%20Derek">
+            ♥ RSVP by Email
+          </a>
+
+          <a class="link-button" href="https://forms.gle/REPLACE-FOOD-LINK" target="_blank" rel="noopener noreferrer">
+            🍽 Food Options
+          </a>
+
+          <a class="link-button" href="https://forms.gle/REPLACE-DIETARY-LINK" target="_blank" rel="noopener noreferrer">
+            🌿 Dietary Requirements
+          </a>
+
+          <a class="link-button" href="https://forms.gle/REPLACE-SONG-REQUESTS-LINK" target="_blank" rel="noopener noreferrer">
+            🎵 Song Requests
+          </a>
+
+          <a class="link-button" href="https://example.com/room-information" target="_blank" rel="noopener noreferrer">
+            🛏 Room Information &amp; Prices
+          </a>
         </div>
-        <p class="footer-note">With love, Tina &amp; Derek.</p>
-        <a class="back-link" href="index.html">← Back to envelope</a>
+
+        <p class="footer-note">
+          With love, Tina &amp; Derek.
+        </p>
+
+        <a class="back-link" href="index.html">
+          ← Back to envelope
+        </a>
       </div>
     </article>
   </main>
