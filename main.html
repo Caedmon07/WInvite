@@ -1,723 +1,298 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-
   <meta charset="UTF-8" />
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
-
-  <title>
-    Tina & Derek Wedding Details
-  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tina &amp; Derek Wedding Details</title>
 
   <script>
-
-    if (
-      sessionStorage.getItem(
-        "weddingInviteUnlocked"
-      ) !== "true"
-    ) {
-
-      window.location.href =
-        "index.html";
+    if (sessionStorage.getItem("weddingInviteUnlocked") !== "true") {
+      window.location.href = "index.html";
     }
-
   </script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ovo&display=swap" rel="stylesheet">
+
   <style>
-
     :root {
-
-      --ink: #2d3340;
-
-      --muted-ink:
-        rgba(45,51,64,0.72);
-
+      --ink: #2c3140;
+      --muted: rgba(44,49,64,0.74);
       --blue: #6f879f;
-
-      --deep-blue: #526a84;
-
-      --paper: #fbfbf8;
-
+      --button: #526a84;
       --rose: #8c3348;
-
-      --gold: #b69a62;
     }
 
-    * {
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-      box-sizing: border-box;
-
-      margin: 0;
-
-      padding: 0;
-    }
-
-    html {
-
-      scroll-behavior: smooth;
-    }
+    html { min-height: 100%; scroll-behavior: smooth; }
 
     body {
-
       min-height: 100vh;
-
-      font-family:
-        Georgia,
-        'Times New Roman',
-        serif;
-
+      font-family: 'Ovo', Georgia, serif;
       color: var(--ink);
-
-      background:
-        linear-gradient(
-          rgba(255,255,255,0.82),
-          rgba(255,255,255,0.90)
-        ),
-        url("assets/auchen-castle.jpg")
-        center / cover fixed no-repeat;
-
+      background: #f8fbfd url("assets/base-watercolour.png") center top / cover fixed no-repeat;
       overflow-x: hidden;
     }
 
-    body::before {
-
-      content: "";
-
-      position: fixed;
-
-      inset: 0;
-
-      background:
-        url("assets/floral-top-left.png")
-        top left /
-        min(58vw, 440px)
-        auto no-repeat,
-
-        url("assets/floral-top-right-ink.png")
-        top right /
-        min(48vw, 390px)
-        auto no-repeat,
-
-        url("assets/floral-bottom-left-ink.png")
-        bottom left /
-        min(48vw, 390px)
-        auto no-repeat,
-
-        url("assets/floral-bottom-right.png")
-        bottom right /
-        min(58vw, 440px)
-        auto no-repeat;
-
-      pointer-events: none;
-
-      opacity: 0.9;
-
-      z-index: 0;
-    }
-
     .page {
-
       position: relative;
-
-      z-index: 1;
-
       min-height: 100vh;
-
       display: flex;
-
-      align-items: center;
-
       justify-content: center;
-
-      padding: 28px 16px;
+      padding: clamp(18px, 4vw, 46px) 14px;
+      isolation: isolate;
     }
+
+    .art {
+      position: fixed;
+      pointer-events: none;
+      user-select: none;
+      z-index: -1;
+    }
+
+    .art.top-watercolour { top: 0; right: 0; width: min(72vw, 680px); opacity: 0.92; }
+    .art.top-rose { top: 0; left: 0; width: min(42vw, 360px); opacity: 0.86; }
+    .art.top-splatter { top: 0; right: 0; width: min(60vw, 540px); opacity: 0.38; }
+    .art.bottom-watercolour { bottom: 0; left: 0; width: min(72vw, 680px); opacity: 0.82; }
+    .art.bottom-thistle { bottom: 0; right: 0; width: min(42vw, 360px); opacity: 0.86; }
+    .art.bottom-splatter { bottom: 0; left: 0; width: min(60vw, 540px); opacity: 0.38; }
 
     .invite-card {
-
-      width:
-        min(100%, 850px);
-
-      background:
-        linear-gradient(
-          rgba(255,255,255,0.90),
-          rgba(255,255,255,0.92)
-        ),
-        url("assets/watercolour-paper.jpg")
-        center / cover;
-
-      border:
-        1px solid rgba(45,51,64,0.08);
-
-      box-shadow:
-        0 30px 90px rgba(7,20,47,0.18);
-
-      padding:
-        clamp(50px, 8vw, 92px)
-        clamp(24px, 7vw, 86px);
-
+      width: min(100%, 900px);
+      min-height: 1180px;
+      padding: clamp(62px, 8vw, 112px) clamp(22px, 7vw, 90px);
       text-align: center;
-
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.20);
+      box-shadow: 0 30px 90px rgba(82,106,132,0.10);
       position: relative;
-
-      overflow: hidden;
-    }
-
-    .invite-card::before {
-
-      content: "";
-
-      position: absolute;
-
-      inset: 18px;
-
-      border:
-        1px solid rgba(45,51,64,0.06);
-
-      pointer-events: none;
     }
 
     .eyebrow {
-
       text-transform: uppercase;
-
-      letter-spacing: 0.10em;
-
+      letter-spacing: 0.16em;
       line-height: 1.45;
-
-      font-size:
-        clamp(1.25rem, 3.2vw, 2rem);
-
-      margin-bottom: 26px;
+      font-size: clamp(1.25rem, 3.6vw, 2.2rem);
+      margin-bottom: clamp(24px, 4vw, 44px);
     }
 
     .names {
-
-      font-family:
-        'Brush Script MT',
-        'Segoe Script',
-        cursive;
-
-      font-size:
-        clamp(4.5rem, 14vw, 8.6rem);
-
-      line-height: 0.88;
-
+      font-family: 'Brittany Signature', 'Brush Script MT', 'Segoe Script', cursive;
+      font-size: clamp(5.2rem, 16vw, 10rem);
+      line-height: 0.78;
       font-weight: 400;
-
-      margin:
-        8px 0 40px;
+      margin: 0 0 clamp(34px, 5vw, 58px);
     }
 
-    .names span {
-
-      display: block;
-    }
+    .names span { display: block; }
 
     .ampersand {
-
-      font-family:
-        Georgia,
-        serif;
-
-      font-size: 0.55em;
-
-      line-height: 1.1;
-
-      margin:
-        8px 0;
+      font-family: 'Ovo', Georgia, serif;
+      font-size: 0.56em;
+      line-height: 1;
+      margin: 0.04em 0;
     }
 
     .invite-text {
-
-      max-width: 650px;
-
-      margin:
-        0 auto 32px;
-
-      font-size:
-        clamp(1.25rem, 3.2vw, 1.8rem);
-
-      line-height: 1.42;
+      max-width: 700px;
+      margin: 0 auto 28px;
+      font-size: clamp(1.24rem, 3.2vw, 1.9rem);
+      line-height: 1.45;
     }
 
     .date-row {
-
       display: flex;
-
-      align-items: center;
-
       justify-content: center;
-
-      gap:
-        clamp(12px, 4vw, 24px);
-
-      margin:
-        18px 0 24px;
+      align-items: center;
+      gap: clamp(12px, 4vw, 26px);
+      margin: 24px 0 22px;
     }
 
     .date-side {
-
-      font-size:
-        clamp(1.45rem, 4vw, 2.4rem);
-
       text-transform: uppercase;
-
       letter-spacing: 0.08em;
+      font-size: clamp(1.45rem, 4vw, 2.45rem);
     }
 
     .date-day {
-
-      font-family:
-        'Brush Script MT',
-        'Segoe Script',
-        cursive;
-
-      font-size:
-        clamp(4.3rem, 12vw, 7rem);
-
+      font-family: 'Brittany Signature', 'Brush Script MT', 'Segoe Script', cursive;
+      font-size: clamp(4.6rem, 12vw, 7.2rem);
       line-height: 0.8;
-
-      border-left:
-        2px solid var(--blue);
-
-      border-right:
-        2px solid var(--blue);
-
-      padding:
-        0 18px 8px;
+      border-left: 2px solid var(--blue);
+      border-right: 2px solid var(--blue);
+      padding: 0 18px 10px;
     }
 
-    .time {
-
-      font-size:
-        clamp(1.8rem, 4.5vw, 2.5rem);
-
-      margin:
-        10px 0 6px;
-    }
-
-    .venue-main {
-
-      font-size:
-        clamp(2rem, 5vw, 3rem);
-
-      line-height: 1.15;
-    }
-
-    .venue-sub {
-
-      font-size:
-        clamp(1.2rem, 3.4vw, 1.9rem);
-
-      line-height: 1.35;
-
-      margin-bottom: 28px;
-    }
+    .time { font-size: clamp(1.75rem, 4.2vw, 2.5rem); margin: 12px 0 4px; }
+    .venue-main { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
+    .venue-sub { font-size: clamp(1.2rem, 3.4vw, 1.9rem); line-height: 1.35; margin-bottom: 30px; }
 
     .divider {
-
+      margin: 30px auto;
       color: var(--blue);
-
-      font-size: 1.6rem;
-
-      margin:
-        30px auto;
-
-      letter-spacing: 0.4em;
+      font-size: 1.65rem;
+      letter-spacing: 0.38em;
     }
 
-    .gift-poem,
-    .info-box {
-
-      max-width: 680px;
-
-      margin:
-        0 auto 24px;
-
-      background:
-        rgba(255,255,255,0.62);
-
-      border:
-        1px solid rgba(82,106,132,0.16);
-
-      padding: 24px;
-
-      line-height: 1.72;
-
-      font-size:
-        clamp(1rem, 2.6vw, 1.16rem);
+    .details-section {
+      max-width: 700px;
+      margin: 0 auto 26px;
+      padding: 22px clamp(18px, 4vw, 30px);
+      background: rgba(255, 255, 255, 0.48);
+      border: 1px solid rgba(82,106,132,0.14);
+      line-height: 1.68;
+      font-size: clamp(1rem, 2.55vw, 1.16rem);
     }
 
-    .gift-poem h2,
-    .info-box h2 {
-
+    .details-section h2 {
       font-weight: 400;
-
-      font-size:
-        clamp(1.4rem, 4vw, 2.1rem);
-
+      font-size: clamp(1.45rem, 4vw, 2.1rem);
       margin-bottom: 12px;
     }
 
     .heart-row {
-
       margin-top: 16px;
-
       color: var(--rose);
-
-      font-size: 1.35rem;
-
-      letter-spacing: 0.35em;
+      font-size: 1.3rem;
+      letter-spacing: 0.34em;
     }
 
     .button-grid {
-
-      max-width: 680px;
-
-      margin:
-        30px auto 20px;
-
+      max-width: 700px;
+      margin: 30px auto 22px;
       display: grid;
-
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
 
     .link-button {
-
       display: flex;
-
-      justify-content: center;
-
       align-items: center;
-
+      justify-content: center;
       min-height: 52px;
-
       padding: 14px 18px;
-
       border-radius: 999px;
-
-      text-decoration: none;
-
+      border: 1px solid rgba(82,106,132,0.24);
+      background: rgba(255,255,255,0.70);
       color: var(--ink);
-
-      background:
-        rgba(255,255,255,0.72);
-
-      border:
-        1px solid rgba(82,106,132,0.25);
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: transform 0.2s ease, background 0.2s ease;
     }
 
     .link-button:hover,
-    .link-button:focus {
-
-      transform: translateY(-2px);
-
-      background: #ffffff;
-    }
+    .link-button:focus { transform: translateY(-2px); background: #ffffff; }
 
     .link-button.primary {
-
       grid-column: 1 / -1;
-
-      background:
-        var(--deep-blue);
-
-      color: white;
-    }
-
-    .back-link {
-
-      display: inline-block;
-
-      margin-top: 22px;
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      font-size: 0.9rem;
-
-      color: var(--muted-ink);
-
-      text-decoration: none;
-    }
-
-    .back-link:hover {
-
-      text-decoration: underline;
+      background: var(--button);
+      color: #ffffff;
     }
 
     .footer-note {
-
       margin-top: 22px;
-
-      color: var(--muted-ink);
-
-      font-size: 0.9rem;
-
+      color: var(--muted);
+      font-size: 0.95rem;
       line-height: 1.5;
     }
 
-    @media (max-width: 640px) {
-
-      body {
-
-        background-attachment: scroll;
-      }
-
-      body::before {
-
-        background:
-          url("assets/floral-top-left.png")
-          top left / 260px auto no-repeat,
-
-          url("assets/floral-bottom-right.png")
-          bottom right / 260px auto no-repeat;
-      }
-
-      .invite-card {
-
-        padding-top: 64px;
-      }
-
-      .button-grid {
-
-        grid-template-columns: 1fr;
-      }
-
-      .link-button.primary {
-
-        grid-column: auto;
-      }
+    .back-link {
+      display: inline-block;
+      margin-top: 22px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
     }
 
-  </style>
+    .back-link:hover { text-decoration: underline; }
 
+    @media (max-width: 640px) {
+      body { background-attachment: scroll; }
+      .invite-card { min-height: auto; padding-top: 74px; padding-bottom: 56px; }
+      .button-grid { grid-template-columns: 1fr; }
+      .link-button.primary { grid-column: auto; }
+      .art.top-watercolour { width: 88vw; }
+      .art.top-rose { width: 58vw; }
+      .art.bottom-watercolour { width: 88vw; }
+      .art.bottom-thistle { width: 58vw; }
+    }
+  </style>
 </head>
 
 <body>
+  <img class="art top-watercolour" src="assets/top-right-watercolour.png" alt="" aria-hidden="true" />
+  <img class="art top-rose" src="assets/rose-top-right.png" alt="" aria-hidden="true" />
+  <img class="art top-splatter" src="assets/top-right-splatters.png" alt="" aria-hidden="true" />
+  <img class="art bottom-watercolour" src="assets/bottom-left-watercolour.png" alt="" aria-hidden="true" />
+  <img class="art bottom-thistle" src="assets/thistle-bottom-left.png" alt="" aria-hidden="true" />
+  <img class="art bottom-splatter" src="assets/bottom-left-splatters.png" alt="" aria-hidden="true" />
 
   <main class="page">
-
     <article class="invite-card">
-
-      <p class="eyebrow">
-
-        Together<br>
-        with their families
-
-      </p>
+      <p class="eyebrow">Together<br />with their families</p>
 
       <h1 class="names">
-
         <span>Tina</span>
-
-        <span class="ampersand">
-          &
-        </span>
-
+        <span class="ampersand">&amp;</span>
         <span>Derek</span>
-
       </h1>
 
       <p class="invite-text">
-
-        Invite you to celebrate love,
-        laughter, and<br>
-
+        Invite you to celebrate love, laughter, and<br />
         their happily ever after together.
-
       </p>
 
-      <div class="date-row">
-
-        <span class="date-side">
-          July
-        </span>
-
-        <span class="date-day">
-          17
-        </span>
-
-        <span class="date-side">
-          2027
-        </span>
-
+      <div class="date-row" aria-label="Wedding date 17 July 2027">
+        <span class="date-side">July</span>
+        <span class="date-day">17</span>
+        <span class="date-side">2027</span>
       </div>
 
-      <p class="time">
-        13:00
-      </p>
+      <p class="time">13:00</p>
+      <p class="venue-main">Auchen Castle</p>
+      <p class="venue-sub">Beattock, Moffat, DG10 9SH</p>
 
-      <p class="venue-main">
-        Auchen Castle
-      </p>
+      <div class="divider">♡ ♥ ♡</div>
 
-      <p class="venue-sub">
-        Beattock, Moffat, DG10 9SH
-      </p>
-
-      <div class="divider">
-        ♡ ♥ ♡
-      </div>
-
-      <section class="gift-poem">
-
-        <h2>
-          A small note about gifts
-        </h2>
-
+      <section class="details-section" aria-label="Honeymoon gift poem">
+        <h2>A small note about gifts</h2>
         <p>
-
-          We've moved two homes together,
-          along with our pots and pans.<br>
-
-          As we don't need any gifts,
-          we have another plan.<br>
-
-          We know it's not traditional,
-          and not the way it's done.<br>
-
-          Rather than a wedding list,
-          we'd love a bit of sun.<br><br>
-
-          So if you'd like to give a gift,
-          and send us on our way,<br>
-
-          A donation to our honeymoon
-          would really make our day.<br>
-
-          Then while we are relaxing,
-          outside a bar or by the pool,<br>
-
-          We'll sit back and know
-          that it is truly thanks to you.<br><br>
-
-          Tina & Derek
-
+          We've moved two homes together, along with our pots and pans.<br />
+          As we don't need any gifts, we have another plan.<br />
+          We know it's not traditional, and not the way it's done.<br />
+          Rather than a wedding list, we'd love a bit of sun.<br /><br />
+          So if you'd like to give a gift, and send us on our way,<br />
+          A donation to our honeymoon would really make our day.<br />
+          Then while we are relaxing, outside a bar or by the pool,<br />
+          We'll sit back and know that it is truly thanks to you.<br /><br />
+          Tina &amp; Derek
         </p>
-
-        <div class="heart-row">
-
-          ♥ ♡ ♥ ♡ ♥
-
-        </div>
-
+        <div class="heart-row" aria-hidden="true">♥ ♡ ♥ ♡ ♥</div>
       </section>
 
-      <section class="info-box">
-
-        <h2>
-          Wedding information
-        </h2>
-
-        <p>
-
-          Rooms are available on Friday and Saturday.
-          Room details and prices will be added soon.
-
-        </p>
-
-        <p style="margin-top:12px;">
-
-          If you would like to request a song
-          to be played in the evening disco,
-          we will do our best to accommodate.
-
-        </p>
-
+      <section class="details-section" aria-label="Wedding information">
+        <h2>Wedding information</h2>
+        <p>Rooms are available on Friday and Saturday. Room details and prices will be added soon.</p>
+        <p style="margin-top:12px;">If you would like to request a song to be played in the evening disco, we will do our best to accommodate.</p>
       </section>
 
       <div class="button-grid">
-
-        <a
-          class="link-button primary"
-          href="mailto:delsg2@yahoo.co.uk?subject=Wedding%20RSVP%20-%20Tina%20%26%20Derek"
-        >
-
-          ♥ RSVP by Email
-
-        </a>
-
-        <a
-          class="link-button"
-          href="https://forms.gle/REPLACE-FOOD-LINK"
-          target="_blank"
-        >
-
-          🍽 Food Options
-
-        </a>
-
-        <a
-          class="link-button"
-          href="https://forms.gle/REPLACE-DIETARY-LINK"
-          target="_blank"
-        >
-
-          🌿 Dietary Requirements
-
-        </a>
-
-        <a
-          class="link-button"
-          href="https://forms.gle/REPLACE-SONG-REQUESTS-LINK"
-          target="_blank"
-        >
-
-          🎵 Song Requests
-
-        </a>
-
-        <a
-          class="link-button"
-          href="https://example.com/room-information"
-          target="_blank"
-        >
-
-          🛏 Room Information & Prices
-
-        </a>
-
+        <a class="link-button primary" href="mailto:delsg2@yahoo.co.uk?subject=Wedding%20RSVP%20-%20Tina%20%26%20Derek">♥ RSVP by Email</a>
+        <a class="link-button" href="https://forms.gle/REPLACE-FOOD-LINK" target="_blank" rel="noopener noreferrer">🍽 Food Options</a>
+        <a class="link-button" href="https://forms.gle/REPLACE-DIETARY-LINK" target="_blank" rel="noopener noreferrer">🌿 Dietary Requirements</a>
+        <a class="link-button" href="https://forms.gle/REPLACE-SONG-REQUESTS-LINK" target="_blank" rel="noopener noreferrer">🎵 Song Requests</a>
+        <a class="link-button" href="https://example.com/room-information" target="_blank" rel="noopener noreferrer">🛏 Room Information &amp; Prices</a>
       </div>
 
       <p class="footer-note">
-
-        Please send RSVP replies
-        to delsg2@yahoo.co.uk.<br>
-
-        With love,
-        Tina & Derek.
-
+        Please send RSVP replies to delsg2@yahoo.co.uk.<br />
+        With love, Tina &amp; Derek.
       </p>
 
-      <a
-        class="back-link"
-        href="index.html"
-      >
-
-        ← Back to envelope
-
-      </a>
-
+      <a class="back-link" href="index.html">← Back to envelope</a>
     </article>
-
   </main>
-
 </body>
 </html>
