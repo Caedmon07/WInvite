@@ -3,167 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tina &amp; Derek Wedding Invitation</title>
+  <title>Tina & Derek Wedding Invitation</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ovo&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Ovo&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --ink: #2c3140;
-      --muted: rgba(44, 49, 64, 0.72);
-      --blue: #6f879f;
-      --soft-blue: #dbe7f2;
-      --button: #526a84;
+      --ink: #2d3340;
+      --blue: #526a84;
       --rose: #8c3348;
-      --paper: #fbfbf8;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { min-height: 100%; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       min-height: 100vh;
-      font-family: 'Ovo', Georgia, serif;
+      font-family: 'Ovo', serif;
       color: var(--ink);
-      background: #f8fbfd url("assets/base-watercolour.png") center / cover fixed no-repeat;
+      background: #eef3f7 url("assets/base water colour.png") center / cover no-repeat fixed;
       overflow-x: hidden;
+      overflow-y: auto;
     }
 
     .page {
       min-height: 100vh;
       display: grid;
       place-items: center;
-      padding: clamp(18px, 4vw, 48px);
-      position: relative;
-      isolation: isolate;
+      padding: 28px;
       text-align: center;
     }
 
-    .art {
-      position: fixed;
-      pointer-events: none;
-      z-index: -1;
-      user-select: none;
-    }
-
-    .art.top-watercolour {
-      top: 0;
-      right: 0;
-      width: min(72vw, 680px);
-      opacity: 0.9;
-    }
-
-    .art.top-rose {
-      top: 0;
-      left: 0;
-      width: min(42vw, 360px);
-      opacity: 0.82;
-    }
-
-    .art.top-splatter {
-      top: 0;
-      right: 0;
-      width: min(58vw, 520px);
-      opacity: 0.35;
-    }
-
-    .art.bottom-watercolour {
-      bottom: 0;
-      left: 0;
-      width: min(72vw, 680px);
-      opacity: 0.78;
-    }
-
-    .art.bottom-thistle {
-      bottom: 0;
-      right: 0;
-      width: min(42vw, 360px);
-      opacity: 0.84;
-    }
-
-    .art.bottom-splatter {
-      bottom: 0;
-      left: 0;
-      width: min(58vw, 520px);
-      opacity: 0.35;
-    }
-
     .landing-card {
-      width: min(100%, 720px);
-      min-height: min(92vh, 980px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: clamp(34px, 7vw, 78px) clamp(20px, 6vw, 62px);
-      background: rgba(255, 255, 255, 0.22);
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      box-shadow: 0 28px 90px rgba(82, 106, 132, 0.12);
-      backdrop-filter: blur(1px);
+      position: relative;
+      width: min(100%, 760px);
+      padding: clamp(42px, 7vw, 78px);
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(120,130,150,0.12);
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(20,30,50,0.14);
+      overflow: hidden;
+    }
+
+    .landing-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        url("assets/rose, top right.png") top left / 250px auto no-repeat,
+        url("assets/top right water colour.png") top right / 340px auto no-repeat,
+        url("assets/thistel bottom left.png") bottom right / 260px auto no-repeat,
+        url("assets/bottom left water color.png") bottom left / 340px auto no-repeat,
+        url("assets/top right paint splatters.png") top right / 430px auto no-repeat,
+        url("assets/bottom left paint splatters.png") bottom left / 430px auto no-repeat;
+      opacity: 0.92;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
     }
 
     .eyebrow {
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      font-size: clamp(1.28rem, 4vw, 2.25rem);
-      line-height: 1.42;
-      margin-bottom: clamp(24px, 4vw, 40px);
+      font-size: clamp(1rem, 2.4vw, 1.45rem);
+      line-height: 1.7;
+      margin-bottom: 28px;
     }
 
     h1 {
-      font-family: 'Brittany Signature', 'Brush Script MT', 'Segoe Script', cursive;
-      font-size: clamp(5.3rem, 17vw, 10rem);
-      line-height: 0.78;
-      font-weight: 400;
-      margin-bottom: clamp(32px, 5vw, 52px);
-    }
-
-    .ampersand {
-      font-family: 'Ovo', Georgia, serif;
-      font-size: 0.56em;
-      line-height: 1;
-      display: block;
-      margin: 0.05em 0;
+      font-family: 'Brittany Signature', 'Great Vibes', cursive;
+      font-size: clamp(5rem, 15vw, 9rem);
+      line-height: 0.86;
+      font-weight: 600;
+      margin-bottom: 34px;
+      color: var(--ink);
+      text-shadow: 0 1px 0 rgba(255,255,255,0.6);
     }
 
     .subtitle {
-      max-width: 620px;
-      font-size: clamp(1.25rem, 3.4vw, 1.75rem);
-      line-height: 1.45;
-      margin-bottom: clamp(28px, 5vw, 44px);
+      font-size: clamp(1.15rem, 3vw, 1.55rem);
+      line-height: 1.55;
+      margin-bottom: 34px;
     }
 
     .envelope-link {
       display: inline-block;
-      color: inherit;
       text-decoration: none;
-      transition: opacity 0.25s ease, filter 0.25s ease;
+      color: inherit;
+      transition: opacity 0.3s ease, filter 0.3s ease;
     }
 
     .envelope-link.locked {
-      opacity: 0.48;
+      opacity: 0.45;
       pointer-events: none;
-      filter: grayscale(0.2);
+      filter: grayscale(0.25);
     }
 
     .envelope {
       position: relative;
-      width: min(72vw, 330px);
-      height: 205px;
-      margin: 0 auto 12px;
+      width: min(76vw, 340px);
+      height: 210px;
+      margin: 0 auto 16px;
       animation: float 3s ease-in-out infinite;
-      filter: drop-shadow(0 22px 30px rgba(44, 49, 64, 0.18));
+      filter: drop-shadow(0 22px 28px rgba(20,30,50,0.22));
     }
 
     .envelope-base {
       position: absolute;
       inset: 54px 0 0;
       background: linear-gradient(145deg, #fffaf0, #e7d8bd);
-      border: 1px solid rgba(82,106,132,0.20);
-      border-radius: 0 0 16px 16px;
+      border: 1px solid rgba(120,110,93,0.24);
+      border-radius: 0 0 18px 18px;
       overflow: hidden;
     }
 
@@ -174,18 +131,25 @@
       bottom: 0;
       width: 56%;
       height: 100%;
-      background: rgba(111,135,159,0.10);
+      background: rgba(88,120,151,0.10);
     }
 
-    .envelope-base::before { left: 0; clip-path: polygon(0 0, 100% 100%, 0 100%); }
-    .envelope-base::after { right: 0; clip-path: polygon(100% 0, 100% 100%, 0 100%); }
+    .envelope-base::before {
+      left: 0;
+      clip-path: polygon(0 0, 100% 100%, 0 100%);
+    }
+
+    .envelope-base::after {
+      right: 0;
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
 
     .envelope-flap {
       position: absolute;
       left: 0;
       right: 0;
       top: 54px;
-      height: 112px;
+      height: 118px;
       background: linear-gradient(145deg, #ffffff, #e8d9bd);
       clip-path: polygon(0 0, 50% 100%, 100% 0);
       transform-origin: top center;
@@ -198,38 +162,40 @@
       left: 50%;
       top: 122px;
       transform: translateX(-50%);
-      width: 48px;
-      height: 48px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       background: linear-gradient(135deg, #8c3348, #5c1c2f);
       color: white;
       display: grid;
       place-items: center;
       z-index: 4;
-      font-size: 1.18rem;
-      border: 2px solid rgba(255,255,255,0.86);
+      font-size: 1.25rem;
+      border: 2px solid rgba(255,255,255,0.85);
     }
 
     .envelope-link:hover .envelope-flap,
-    .envelope-link:focus .envelope-flap { transform: rotateX(22deg); }
+    .envelope-link:focus .envelope-flap {
+      transform: rotateX(22deg);
+    }
 
     .open-note {
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 0.86rem;
-      color: var(--muted);
+      letter-spacing: 0.16em;
+      font-size: 0.82rem;
+      color: rgba(45,51,64,0.72);
     }
 
     .password-panel {
-      margin-top: 26px;
+      margin-top: 30px;
       display: grid;
-      gap: 12px;
+      gap: 14px;
       justify-items: center;
     }
 
     .password-label {
-      font-size: 1rem;
-      color: var(--muted);
+      font-size: 0.95rem;
+      color: rgba(45,51,64,0.76);
     }
 
     .password-row {
@@ -240,95 +206,110 @@
     }
 
     .password-input {
-      width: min(78vw, 270px);
+      width: min(78vw, 260px);
       min-height: 48px;
       border-radius: 999px;
       border: 1px solid rgba(82,106,132,0.24);
-      background: rgba(255,255,255,0.74);
+      background: rgba(255,255,255,0.82);
       padding: 0 18px;
       text-align: center;
-      font: 1rem 'Ovo', Georgia, serif;
+      font-size: 1rem;
+      font-family: 'Ovo', serif;
       color: var(--ink);
       outline: none;
-    }
-
-    .password-input:focus {
-      border-color: rgba(82,106,132,0.70);
-      box-shadow: 0 0 0 4px rgba(82,106,132,0.12);
     }
 
     .unlock-button {
       min-height: 48px;
       border: 0;
       border-radius: 999px;
-      padding: 0 24px;
-      background: var(--button);
+      padding: 0 22px;
+      background: var(--blue);
       color: white;
       cursor: pointer;
-      font: 1rem 'Ovo', Georgia, serif;
-      transition: transform 0.2s ease, background 0.2s ease;
+      font-family: 'Ovo', serif;
+      font-size: 0.95rem;
     }
-
-    .unlock-button:hover { transform: translateY(-1px); background: #607b98; }
 
     .password-message {
       min-height: 20px;
-      font-size: 0.92rem;
+      font-size: 0.86rem;
       color: var(--rose);
     }
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-9px); }
+      50% { transform: translateY(-10px); }
     }
 
     @media (max-width: 620px) {
-      body { background-attachment: scroll; }
-      .landing-card { min-height: auto; padding-top: 64px; padding-bottom: 48px; }
-      .art.top-watercolour { width: 88vw; }
-      .art.top-rose { width: 58vw; }
-      .art.bottom-watercolour { width: 88vw; }
-      .art.bottom-thistle { width: 58vw; }
+      body {
+        background-attachment: scroll;
+      }
+
+      .landing-card::before {
+        background:
+          url("assets/rose, top right.png") top left / 190px auto no-repeat,
+          url("assets/top right water colour.png") top right / 240px auto no-repeat,
+          url("assets/thistel bottom left.png") bottom right / 200px auto no-repeat,
+          url("assets/bottom left water color.png") bottom left / 250px auto no-repeat;
+      }
     }
   </style>
 </head>
 
 <body>
-  <img class="art top-watercolour" src="assets/top-right-watercolour.png" alt="" aria-hidden="true" />
-  <img class="art top-rose" src="assets/rose-top-right.png" alt="" aria-hidden="true" />
-  <img class="art top-splatter" src="assets/top-right-splatters.png" alt="" aria-hidden="true" />
-  <img class="art bottom-watercolour" src="assets/bottom-left-watercolour.png" alt="" aria-hidden="true" />
-  <img class="art bottom-thistle" src="assets/thistle-bottom-left.png" alt="" aria-hidden="true" />
-  <img class="art bottom-splatter" src="assets/bottom-left-splatters.png" alt="" aria-hidden="true" />
-
   <main class="page">
     <section class="landing-card">
-      <p class="eyebrow">Together<br />with their families</p>
+      <div class="content">
+        <p class="eyebrow">
+          Together<br>
+          with their families
+        </p>
 
-      <h1>Tina<span class="ampersand">&amp;</span>Derek</h1>
+        <h1>
+          Tina<br>
+          &amp;<br>
+          Derek
+        </h1>
 
-      <p class="subtitle">
-        Invite you to celebrate love, laughter,<br />
-        and their happily ever after together.
-      </p>
+        <p class="subtitle">
+          Invite you to celebrate love, laughter,<br>
+          and their happily ever after together.
+        </p>
 
-      <a class="envelope-link locked" id="inviteLink" href="main.html">
-        <div class="envelope">
-          <div class="envelope-flap"></div>
-          <div class="envelope-base"></div>
-          <div class="seal">♥</div>
-        </div>
-        <p class="open-note">Invitation locked</p>
-      </a>
+        <a class="envelope-link locked" id="inviteLink" href="main.html">
+          <div class="envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-base"></div>
+            <div class="seal">♥</div>
+          </div>
 
-      <form class="password-panel" id="passwordForm">
-        <label class="password-label" for="weddingPassword">Enter the wedding password</label>
-        <div class="password-row">
-          <input class="password-input" id="weddingPassword" type="password" autocomplete="off" placeholder="Wedding password" />
-          <button class="unlock-button" type="submit">Unlock</button>
-        </div>
-        <p class="password-message" id="passwordMessage"></p>
-      </form>
+          <p class="open-note">Invitation locked</p>
+        </a>
+
+        <form class="password-panel" id="passwordForm">
+          <label class="password-label" for="weddingPassword">
+            Enter the wedding password
+          </label>
+
+          <div class="password-row">
+            <input
+              class="password-input"
+              id="weddingPassword"
+              type="password"
+              autocomplete="off"
+              placeholder="Wedding password"
+            >
+
+            <button class="unlock-button" type="submit">
+              Unlock
+            </button>
+          </div>
+
+          <p class="password-message" id="passwordMessage"></p>
+        </form>
+      </div>
     </section>
   </main>
 
