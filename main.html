@@ -62,7 +62,7 @@
       --rose: #8c3348;
 
       --paper-line:
-        rgba(90,100,120,0.16);
+        rgba(90,100,120,0.12);
 
       --panel:
         rgba(255,255,255,0.78);
@@ -86,7 +86,11 @@
         serif;
 
       background:
-        #dfe8f0;
+        linear-gradient(
+          180deg,
+          #e9eff4 0%,
+          #dce6ee 100%
+        );
 
       color: var(--ink);
 
@@ -101,7 +105,7 @@
 
       place-items: center;
 
-      padding: 32px 16px;
+      padding: 40px 18px;
     }
 
     .invite-card {
@@ -109,13 +113,13 @@
       position: relative;
 
       width:
-        min(100%, 760px);
+        min(100%, 780px);
 
-      min-height: 1200px;
+      min-height: 1180px;
 
       padding:
         clamp(54px, 8vw, 88px)
-        clamp(24px, 7vw, 78px);
+        clamp(24px, 7vw, 82px);
 
       background:
         url("base-watercolour.png")
@@ -124,12 +128,19 @@
       border:
         1px solid var(--paper-line);
 
-      border-radius: 4px;
+      border-radius: 8px;
 
       box-shadow:
-        0 24px 70px rgba(22,32,48,0.14);
+
+        0 30px 90px
+        rgba(25,35,48,0.12),
+
+        inset 0 0 60px
+        rgba(255,255,255,0.28);
 
       overflow: hidden;
+
+      backdrop-filter: blur(4px);
     }
 
     .invite-card::before {
@@ -143,26 +154,49 @@
       background:
 
         url("rose-top-right.png")
-        top left / 320px auto no-repeat,
+        top left / 340px auto no-repeat,
 
         url("top-right-watercolour.png")
-        top right / 470px auto no-repeat,
-
-        url("top-right-splatters.png")
         top right / 520px auto no-repeat,
 
+        url("top-right-splatters.png")
+        top right / 600px auto no-repeat,
+
         url("thistle-bottom-left.png")
-        bottom right / 340px auto no-repeat,
+        bottom right / 360px auto no-repeat,
 
         url("bottom-left-watercolour.png")
-        bottom left / 470px auto no-repeat,
+        bottom left / 520px auto no-repeat,
 
         url("bottom-left-splatters.png")
-        bottom left / 520px auto no-repeat;
+        bottom left / 600px auto no-repeat;
+
+      opacity: 0.95;
 
       pointer-events: none;
 
       z-index: 0;
+    }
+
+    .invite-card::after {
+
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+
+        radial-gradient(
+          circle at top,
+          rgba(255,255,255,0.35),
+          transparent 50%
+        );
+
+      pointer-events: none;
+
+      z-index: 1;
     }
 
     .content {
@@ -171,25 +205,32 @@
 
       z-index: 2;
 
-      max-width: 640px;
+      max-width: 650px;
 
       margin: 0 auto;
 
       background:
-        var(--panel);
+        rgba(255,255,255,0.60);
 
       padding:
-        42px 34px;
+        56px 36px;
 
-      border-radius: 26px;
+      border-radius: 32px;
 
       border:
-        1px solid rgba(82,106,132,0.10);
+        1px solid rgba(82,106,132,0.08);
 
       box-shadow:
-        0 10px 28px rgba(44,56,76,0.08);
+
+        0 12px 36px
+        rgba(44,56,76,0.08),
+
+        inset 0 0 20px
+        rgba(255,255,255,0.45);
 
       text-align: center;
+
+      backdrop-filter: blur(6px);
     }
 
     .eyebrow {
@@ -216,7 +257,7 @@
         cursive;
 
       font-size:
-        clamp(5.8rem, 15vw, 9.8rem);
+        clamp(6rem, 15vw, 10rem);
 
       line-height: 0.88;
 
@@ -225,12 +266,15 @@
       color: var(--ink);
 
       margin:
-        8px 0 46px;
+        8px 0 48px;
 
       letter-spacing: 0.01em;
 
       text-shadow:
-        0 1px 0 rgba(255,255,255,0.55);
+
+        0 1px 0 rgba(255,255,255,0.65),
+
+        0 3px 10px rgba(0,0,0,0.04);
     }
 
     .names span {
@@ -240,12 +284,12 @@
 
     .ampersand {
 
-      font-size: 0.46em;
+      font-size: 0.44em;
 
       margin:
-        6px 0 2px;
+        8px 0 4px;
 
-      opacity: 0.92;
+      opacity: 0.94;
     }
 
     .invite-text {
@@ -256,12 +300,12 @@
         0 auto 52px;
 
       font-size:
-        clamp(1.12rem, 2.8vw, 1.42rem);
+        clamp(1.14rem, 2.8vw, 1.46rem);
 
-      line-height: 1.82;
+      line-height: 1.85;
 
       color:
-        rgba(45,51,64,0.86);
+        rgba(45,51,64,0.84);
     }
 
     .date-row {
@@ -273,20 +317,20 @@
       align-items: center;
 
       gap:
-        clamp(12px, 3vw, 26px);
+        clamp(12px, 3vw, 28px);
 
       margin:
-        34px 0 36px;
+        34px 0 38px;
     }
 
     .date-side {
 
       font-size:
-        clamp(1rem, 3vw, 1.6rem);
+        clamp(1rem, 3vw, 1.65rem);
 
       text-transform: uppercase;
 
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
 
       color:
         rgba(45,51,64,0.72);
@@ -299,7 +343,7 @@
         cursive;
 
       font-size:
-        clamp(5rem, 12vw, 7.8rem);
+        clamp(5.2rem, 12vw, 8rem);
 
       line-height: 0.8;
 
@@ -309,10 +353,10 @@
         0 18px 10px;
 
       border-left:
-        1px solid rgba(82,106,132,0.32);
+        1px solid rgba(82,106,132,0.28);
 
       border-right:
-        1px solid rgba(82,106,132,0.32);
+        1px solid rgba(82,106,132,0.28);
     }
 
     .time {
@@ -321,7 +365,7 @@
         clamp(1.4rem, 4vw, 2rem);
 
       margin:
-        6px 0 12px;
+        10px 0 14px;
 
       color:
         rgba(45,51,64,0.86);
@@ -340,7 +384,7 @@
     .venue-sub {
 
       font-size:
-        clamp(1rem, 3vw, 1.4rem);
+        clamp(1rem, 3vw, 1.38rem);
 
       line-height: 1.7;
 
@@ -353,7 +397,7 @@
     .divider {
 
       color:
-        rgba(82,106,132,0.7);
+        rgba(82,106,132,0.68);
 
       font-size: 1.25rem;
 
@@ -368,7 +412,7 @@
       max-width: 680px;
 
       margin:
-        34px auto 34px;
+        34px auto 18px;
 
       display: grid;
 
@@ -386,10 +430,10 @@
 
       align-items: center;
 
-      min-height: 56px;
+      min-height: 58px;
 
       padding:
-        14px 22px;
+        14px 24px;
 
       border-radius: 999px;
 
@@ -398,10 +442,10 @@
       color: var(--ink);
 
       background:
-        rgba(255,255,255,0.82);
+        rgba(255,255,255,0.78);
 
       border:
-        1px solid rgba(82,106,132,0.18);
+        1px solid rgba(82,106,132,0.14);
 
       font-family:
         "Ovo",
@@ -410,94 +454,111 @@
       font-size: 1rem;
 
       transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease;
+
+        transform 0.25s ease,
+
+        background 0.25s ease,
+
+        box-shadow 0.25s ease,
+
+        border-color 0.25s ease;
     }
 
     .link-button:hover {
 
       transform:
-        translateY(-2px);
+        translateY(-3px);
 
       background:
         rgba(255,255,255,0.96);
 
+      border-color:
+        rgba(82,106,132,0.24);
+
       box-shadow:
-        0 8px 20px rgba(44,56,76,0.08);
+
+        0 12px 24px
+        rgba(44,56,76,0.10);
     }
 
     .link-button.primary {
 
       background:
-        rgba(82,106,132,0.92);
+        linear-gradient(
+          135deg,
+          #667e98,
+          #526a84
+        );
 
       color: white;
 
       border: 0;
 
       grid-column: 1 / -1;
-    }
-
-    .info-box {
-
-      max-width: 680px;
-
-      margin:
-        0 auto 30px;
-
-      background:
-        rgba(255,255,255,0.64);
-
-      border:
-        1px solid rgba(82,106,132,0.12);
-
-      border-radius: 24px;
-
-      padding:
-        30px 28px;
-
-      line-height: 1.9;
-
-      font-size:
-        clamp(1rem, 2.4vw, 1.1rem);
-
-      color:
-        rgba(45,51,64,0.86);
 
       box-shadow:
-        0 10px 24px rgba(44,56,76,0.05);
+
+        0 12px 24px
+        rgba(82,106,132,0.22);
     }
 
-    .info-box h2 {
+    .link-button.primary:hover {
 
-      font-family:
-        "Parisienne",
-        cursive;
-
-      font-size:
-        clamp(2.1rem, 5vw, 3rem);
-
-      font-weight: 400;
-
-      margin-bottom: 18px;
-
-      color: var(--ink);
+      background:
+        linear-gradient(
+          135deg,
+          #728aa5,
+          #5c7590
+        );
     }
 
     .footer-note {
 
-      margin-top: 22px;
+      margin-top: 34px;
 
       color:
         var(--muted-ink);
 
-      font-size: 0.92rem;
+      font-size: 0.94rem;
 
       line-height: 1.7;
     }
 
     @media (max-width: 640px) {
+
+      .content {
+
+        padding:
+          42px 24px;
+      }
+
+      .invite-card {
+
+        min-height: auto;
+      }
+
+      .invite-card::before {
+
+        background:
+
+          url("rose-top-right.png")
+          top left / 240px auto no-repeat,
+
+          url("top-right-watercolour.png")
+          top right / 340px auto no-repeat,
+
+          url("top-right-splatters.png")
+          top right / 380px auto no-repeat,
+
+          url("thistle-bottom-left.png")
+          bottom right / 240px auto no-repeat,
+
+          url("bottom-left-watercolour.png")
+          bottom left / 340px auto no-repeat,
+
+          url("bottom-left-splatters.png")
+          bottom left / 380px auto no-repeat;
+      }
 
       .button-grid {
 
@@ -592,7 +653,7 @@
           ♥ RSVP
 
         </a>
-        
+
         <!--
         <a
           class="link-button"
@@ -632,7 +693,7 @@
 
       <p class="footer-note">
 
-        Please RSVP as soon as possible.<br>
+        Please RSVP as soon as possible.<br><br>
 
         With love,<br>
 
